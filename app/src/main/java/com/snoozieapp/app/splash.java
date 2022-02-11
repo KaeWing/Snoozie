@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 
 import java.util.Objects;
 
+// Splash Screen that shows up for a few seconds with Snoozie Logo
 public class splash extends AppCompatActivity {
 
     @Override
@@ -23,7 +25,7 @@ public class splash extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
         //WindowInsetsController.hide(WindowInsets.Type.statusBars());
 
-        new Handler().postDelayed(new Runnable() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(splash.this, MainActivity.class);
