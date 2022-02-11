@@ -21,8 +21,7 @@ public class splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Hide Status Bar "Snoozie App" for flash screen
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        
         //WindowInsetsController.hide(WindowInsets.Type.statusBars());
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
