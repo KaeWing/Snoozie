@@ -1,5 +1,7 @@
 package com.snoozieapp.app;
 
+//import static com.snoozieapp.app.databinding.ActivityMainBinding.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
@@ -15,17 +17,16 @@ import android.widget.Toast;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
-import com.snoozieapp.app.databinding.ActivityMainBinding;
+import com.snoozieapp.app.databinding.AlarmsPageBinding;
 
 import java.nio.channels.Channel;
 import java.util.Calendar;
 import java.util.Objects;
 
+public class KevinAlarm extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
 
-
-    private ActivityMainBinding binding;
+    private AlarmsPageBinding binding;
     private MaterialTimePicker picker;
     private Calendar calendar;
     private AlarmManager alarmManager;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = AlarmsPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         createNotificationChannel();
 

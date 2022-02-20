@@ -9,7 +9,7 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.snoozieapp.app.databinding.ActivityMainBinding;
+//import com.snoozieapp.app.databinding.ActivityMainBinding;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
