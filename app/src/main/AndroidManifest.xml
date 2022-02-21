@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomePage"></activity>
-        <activity android:name=".KevinAlarm"></activity>
 
         <receiver android:name=".AlarmReceiver"/>
     </application>
