@@ -39,7 +39,7 @@ public class Alarms extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.alarms_page, container, false);
+        view = inflater.inflate(R.layout.alarms_page, container, false);
         super.onCreate(savedInstanceState);
         createNotificationChannel();
 
