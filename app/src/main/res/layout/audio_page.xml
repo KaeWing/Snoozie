@@ -5,14 +5,59 @@
     android:layout_height="match_parent"
     tools:context=".Audio">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="AUDIO PAGE"
+        android:layout_height="wrap_content"
+        android:text="AUDIO"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="40dp"
-        android:gravity="center"
-        />
+        android:textSize="40dp"/>\
+
+    <Button
+        android:id="@+id/musicBtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="140dp"
+        android:text="Music"
+        android:textSize="26dp" />
+
+    <Button
+        android:id="@+id/ambientNoiseBtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="220dp"
+        android:text="Ambient Noises"
+        android:textSize="26dp" />
+
+    <Button
+        android:id="@+id/pasteVideoURLBtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="300dp"
+        android:text="Paste Video URL"
+        android:textSize="26dp" />
+
+    <Button
+        android:id="@+id/createQueueBtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="440dp"
+        android:text="Create Queue"
+        android:textSize="26dp" />
+
+    <Button
+        android:id="@+id/createLoopBtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="520dp"
+        android:text="Create Loop"
+        android:textSize="26dp" />
 
 </FrameLayout>

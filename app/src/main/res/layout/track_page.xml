@@ -5,14 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".Track">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TRACK PAGE"
+        android:layout_height="wrap_content"
+        android:text="TRACK"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="40dp"
-        android:gravity="center"
-        />
+        android:textSize="40dp"/>\
+
+    <TextView
+        android:id="@+id/placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(this is gonna suck.)"
+        android:layout_marginTop="360dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30dp"/>\
 
 </FrameLayout>

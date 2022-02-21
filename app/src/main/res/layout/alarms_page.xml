@@ -6,6 +6,16 @@
     tools:context=".Alarms">
 
     <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ALARMS"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="40dp"/>\
+
+    <TextView
         android:id="@+id/selectedTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
