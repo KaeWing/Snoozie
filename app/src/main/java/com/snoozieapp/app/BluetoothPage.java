@@ -26,10 +26,20 @@ public class BluetoothPage extends AppCompatActivity {
 
     BluetoothAdapter mBlueAdapter;
 
+    private Button bluetoothDebugBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_page);
+
+        bluetoothDebugBtn = (Button) findViewById(R.id.debugBtn);
+        bluetoothDebugBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDebugMenu();
+            }
+        });
 
         mStatusBlueTv = findViewById(R.id.statusBluetoothTv);
         mPairedTv = findViewById(R.id.pairedTv);
@@ -133,6 +143,11 @@ public class BluetoothPage extends AppCompatActivity {
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void openDebugMenu() {
+        Intent intent = new Intent(this, BluetoothService.class);
+        startActivity(intent);
     }
 
     private void showToast(String msg) {

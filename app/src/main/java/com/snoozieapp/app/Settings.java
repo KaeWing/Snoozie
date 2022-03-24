@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class Settings extends Fragment {
-    private Button button;
+    private Button bluetoothSettingsBtn;
     private View view;
 
     @Override
@@ -19,8 +19,8 @@ public class Settings extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.settings_page, container, false);
 
-        button = (Button) view.findViewById(R.id.bluetoothBtn);
-        button.setOnClickListener(new View.OnClickListener() {
+        bluetoothSettingsBtn = (Button) view.findViewById(R.id.bluetoothBtn);
+        bluetoothSettingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openBluetoothPage();

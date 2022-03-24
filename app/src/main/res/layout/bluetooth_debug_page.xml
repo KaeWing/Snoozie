@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BluetoothService">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth Debug"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="40dp"/>
+
+    <TextView
+        android:id="@+id/mic_title"
+        android:minWidth="200dp"
+        android:text="Microphone"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="130dp"
+        android:layout_width="380dp"
+        android:layout_height="20dp"/>
+
+    <TextView
+        android:id="@+id/mic_data"
+        android:minWidth="200dp"
+        android:text="test"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
+        android:layout_width="380dp"
+        android:layout_height="120dp" />
+
+    <TextView
+        android:id="@+id/pressure_title"
+        android:minWidth="200dp"
+        android:text="Pressure"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="280dp"
+        android:layout_width="380dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/pressure_data"
+        android:minWidth="200dp"
+        android:text="test"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:layout_width="380dp"
+        android:layout_height="120dp" />
+
+    <TextView
+        android:id="@+id/gyro_title"
+        android:minWidth="200dp"
+        android:text="Gyro"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="430dp"
+        android:layout_width="380dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/gyro_data"
+        android:minWidth="200dp"
+        android:text="test"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="450dp"
+        android:layout_width="380dp"
+        android:layout_height="120dp" />
+
+    <TextView
+        android:id="@+id/light_title"
+        android:minWidth="200dp"
+        android:text="Light"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:layout_gravity="left"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="190dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/light_data"
+        android:minWidth="200dp"
+        android:text="test"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:layout_gravity="left"
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="190dp"
+        android:layout_height="120dp" />
+
+    <TextView
+        android:id="@+id/temp_title"
+        android:minWidth="200dp"
+        android:text="Temp"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:layout_gravity="right"
+        android:layout_marginTop="580dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="190dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/temp_data"
+        android:minWidth="200dp"
+        android:text="test"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:layout_gravity="right"
+        android:layout_marginTop="600dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="190dp"
+        android:layout_height="120dp" />
+
+</FrameLayout>
