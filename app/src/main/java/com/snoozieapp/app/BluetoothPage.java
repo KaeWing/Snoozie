@@ -7,9 +7,17 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +34,20 @@ public class BluetoothPage extends AppCompatActivity {
 
     BluetoothAdapter mBlueAdapter;
 
+
+    // Debug UI elements
+    private TextView debug;
+
+    // Bluetooth Service
+    private BluetoothService mBluetoothService = null;
     private Button bluetoothDebugBtn;
+    boolean debugEnabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_page);
+
 
         bluetoothDebugBtn = (Button) findViewById(R.id.debugBtn);
         bluetoothDebugBtn.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +64,19 @@ public class BluetoothPage extends AppCompatActivity {
         mOffBtn = findViewById(R.id.offBtn);
         mDiscoverBtn = findViewById(R.id.discoverableBtn);
         mPairedBtn = findViewById(R.id.pairedBtn);
+        debug = findViewById(R.id.debug_menu);
+
+
+        if (!debugEnabled)
+        {
+            debug.setVisibility(View.INVISIBLE);
+        }
+
+        debug.setText("butt soup! -Troy Barnes, star quarterback at riverside high. haha im so funny and quirky please help im dying inside this is not a joke");
 
         //adapter
         mBlueAdapter = BluetoothAdapter.getDefaultAdapter();
+
 
 //        // Check if Bluetooth is available
 //        if (mBlueAdapter == null) {
@@ -80,7 +106,6 @@ public class BluetoothPage extends AppCompatActivity {
                 else {
                     showToast("Bluetooth is on");
                 }
-
             }
         });
 
@@ -146,7 +171,7 @@ public class BluetoothPage extends AppCompatActivity {
     }
 
     public void openDebugMenu() {
-        Intent intent = new Intent(this, BluetoothService.class);
+        Intent intent = new Intent(this, BluetoothDebugPage.class);
         startActivity(intent);
     }
 

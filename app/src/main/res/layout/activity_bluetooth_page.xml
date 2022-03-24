@@ -67,12 +67,23 @@
         android:text="Get Paired Devices"
         android:textSize="26dp" />
 
+    <TextView
+        android:id="@+id/debug_menu"
+        android:minWidth="200dp"
+        android:text="test"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="500dp"
+        android:layout_width="380dp"
+        android:layout_height="120dp" />
+
     <Button
         android:id="@+id/debugBtn"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="560dp"
+        android:layout_marginTop="650dp"
         android:text="Debug"
         android:textSize="26dp" />
 

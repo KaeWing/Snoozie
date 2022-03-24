@@ -30,6 +30,11 @@ public class HomePage extends AppCompatActivity {
         adapter.addFragment(new Audio(), "AUDIO");
         adapter.addFragment(new Settings(), "SETTINGS");
         viewPager.setAdapter(adapter);
+
+        if (savedInstanceState == null)
+        {
+            BluetoothPage page = new BluetoothPage();
+        }
     }
 
 }

@@ -16,7 +16,7 @@
             android:name=".BluetoothPage"
             android:exported="false" />
         <activity
-            android:name=".BluetoothService"
+            android:name=".BluetoothDebugPage"
             android:exported="false" />
         <activity android:name=".SplashScreen" >
             <intent-filter>
