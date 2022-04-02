@@ -42,7 +42,7 @@ public class BluetoothTest extends Activity {
         //Button sendButton = (Button)findViewById(R.id.send);
         Button closeButton = (Button)findViewById(R.id.closeBtn);
         //myLabel = (TextView)findViewById(R.id.label);
-        //box = (EditText)findViewById(R.id.entry);
+        TextView box = (TextView) findViewById(R.id.box);
 
         //Open Button
         openButton.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +133,7 @@ public class BluetoothTest extends Activity {
 
                                     handler.post(new Runnable() {
                                         public void run() {
+                                            myTextbox.setText(data);
                                         }
                                     });
                                 }
@@ -159,7 +160,7 @@ public class BluetoothTest extends Activity {
         mmOutputStream.write('A');
     }
 
-    void closeBT() throws IOException { // Crashes on Emulator since it can't connect?  java.lang.NullPointerException: Attempt to invoke virtual method 'void java.io.OutputStream.close()' on a null object reference
+    void closeBT() throws IOException { // Crashes on Emulator since it can't connect?  // java.lang.NullPointerException: Attempt to invoke virtual method 'void java.io.OutputStream.close()' on a null object reference
         stopWorker = true;
         mmOutputStream.close();
         mmInputStream.close();
