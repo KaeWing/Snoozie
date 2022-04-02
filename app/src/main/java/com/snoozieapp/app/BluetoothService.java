@@ -27,6 +27,10 @@ public class BluetoothService extends AppCompatActivity {
     public static int MESSAGE_DEVICE_NAME = 4;
     public static int MESSAGE_TOAST = 5;
 
+    // Key names received from the BluetoothChatService Handler
+    static String DEVICE_NAME = "device_name";
+    static String TOAST = "toast";
+
     // Debugging
     private static final String TAG = "BluetoothChatService";
 

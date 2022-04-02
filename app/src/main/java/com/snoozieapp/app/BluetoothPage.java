@@ -41,6 +41,7 @@ public class BluetoothPage extends AppCompatActivity {
     // Bluetooth Service
     private BluetoothService mBluetoothService = null;
     private Button bluetoothDebugBtn;
+    private Button bluetoothTestBtn;
     boolean debugEnabled = true;
 
     @Override
@@ -54,6 +55,14 @@ public class BluetoothPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openDebugMenu();
+            }
+        });
+
+        bluetoothTestBtn = (Button) findViewById(R.id.testBtn);
+        bluetoothTestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTestPage();
             }
         });
 
@@ -172,6 +181,11 @@ public class BluetoothPage extends AppCompatActivity {
 
     public void openDebugMenu() {
         Intent intent = new Intent(this, BluetoothDebugPage.class);
+        startActivity(intent);
+    }
+
+    public void openTestPage() {
+        Intent intent = new Intent(this, BluetoothTest.class);
         startActivity(intent);
     }
 
