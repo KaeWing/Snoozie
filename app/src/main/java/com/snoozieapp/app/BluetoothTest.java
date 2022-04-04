@@ -90,24 +90,39 @@ public class BluetoothTest extends Activity {
             startActivityForResult(enableBluetooth, 0);
         }
 
+        StringBuilder sbdk = new StringBuilder();
+        sbdk.append("DK: \n");
+
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         if(pairedDevices.size() > 0) {
             for(BluetoothDevice device : pairedDevices) {
-                if(device.getName().equals("esp32test")) {  // We need to change this to match the name of the device
+
+                if(device.getName().equals("ESP32Test")) {  // We need to change this to match the name of the device
                     mmDevice = device;
                     break;
                 }
             }
         }
+        else
+        {
+            System.out.print("DK: size <= 0");
+        }
     }
 
     void openBT() throws IOException {
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard //SerialPortService ID
-        mmSocket = mmDevice.createRfcommSocketToServiceRecord(uuid);
-        mmSocket.connect();
-        mmOutputStream = mmSocket.getOutputStream();
-        mmInputStream = mmSocket.getInputStream();
-        beginListenForData();
+        if (mmDevice != null)
+        {
+            mmSocket = mmDevice.createRfcommSocketToServiceRecord(uuid);
+            mmSocket.connect();
+            mmOutputStream = mmSocket.getOutputStream();
+            mmInputStream = mmSocket.getInputStream();
+            beginListenForData();
+        }
+        else
+        {
+            System.out.println("DK: null device");
+        }
     }
 
     void beginListenForData() {
