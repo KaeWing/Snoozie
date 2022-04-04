@@ -32,6 +32,8 @@ public class BluetoothTest extends Activity {
     int readBufferPosition;
     int counter;
     volatile boolean stopWorker;
+    TextView box;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class BluetoothTest extends Activity {
         //Button sendButton = (Button)findViewById(R.id.send);
         Button closeButton = (Button)findViewById(R.id.closeBtn);
         //myLabel = (TextView)findViewById(R.id.label);
-        TextView box = (TextView) findViewById(R.id.box);
+        box = (TextView) findViewById(R.id.box);
 
         //Open Button
         openButton.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +136,7 @@ public class BluetoothTest extends Activity {
                                     handler.post(new Runnable() {
                                         public void run() {
                                             myTextbox.setText(data);
+                                            box.setText("DK: " + data);
                                         }
                                     });
                                 }
