@@ -49,11 +49,11 @@ public class BluetoothTest extends Activity {
         //Open Button
         openButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                try {
+                //try {
                     findBT();
-                    openBT();
-                }
-                catch (IOException ex) { }
+                    //openBT();
+                //}
+                //catch (IOException ex) { }
             }
         });
 
@@ -97,14 +97,20 @@ public class BluetoothTest extends Activity {
         if(pairedDevices.size() > 0) {
             for(BluetoothDevice device : pairedDevices) {
 
+                sbdk.append(device.getName());
+                sbdk.append("\n");
+
                 if(device.getName().equals("ESP32Test")) {  // We need to change this to match the name of the device
                     mmDevice = device;
+                    box.setText("DK: success");
                     break;
                 }
             }
+            box.setText(sbdk.toString());
         }
         else
         {
+            box.setText("DK: size <= 0");
             System.out.print("DK: size <= 0");
         }
     }
