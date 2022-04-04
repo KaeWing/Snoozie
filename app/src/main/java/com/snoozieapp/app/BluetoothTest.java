@@ -100,7 +100,7 @@ public class BluetoothTest extends Activity {
                 sbdk.append(device.getName());
                 sbdk.append("\n");
 
-                if(device.getName().equals("ESP32Test")) {  // We need to change this to match the name of the device
+                if(device.getName().contains("ESP32Test")) {  // We need to change this to match the name of the device
                     mmDevice = device;
                     box.setText("DK: success");
                     break;
