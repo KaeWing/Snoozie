@@ -108,10 +108,10 @@ public class BluetoothTest extends Activity {
         if (mmDevice != null)
         {
             mmSocket = mmDevice.createRfcommSocketToServiceRecord(uuid);
-            // mmSocket.connect();
-            // mmOutputStream = mmSocket.getOutputStream();
-            // mmInputStream = mmSocket.getInputStream();
-            // beginListenForData();
+            mmSocket.connect();
+            mmOutputStream = mmSocket.getOutputStream();
+            mmInputStream = mmSocket.getInputStream();
+            beginListenForData();
         }
         else
         {
@@ -176,7 +176,8 @@ public class BluetoothTest extends Activity {
 
                                     handler.post(new Runnable() {
                                         public void run() {
-                                            myTextbox.setText(data);
+                                            // DK: idk what this is
+                                            // myTextbox.setText(data);
                                             box.setText("DK: " + data);
                                         }
                                     });
