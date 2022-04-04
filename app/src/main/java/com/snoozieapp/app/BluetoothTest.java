@@ -97,11 +97,13 @@ public class BluetoothTest extends Activity {
         if(pairedDevices.size() > 0) {
             for(BluetoothDevice device : pairedDevices) {
 
-                sbdk.append(device.getName());
-                sbdk.append("-ESP32Test-");
+                //difference("ESP32Test", device.getName());
+
+                sbdk.append(difference("ESP32Test", device.getName()));
+                //sbdk.append("-ESP32Test-");
                 sbdk.append("\n");
 
-                if(device.getName().contains("ESP32Test")) {  // We need to change this to match the name of the device
+                if(device.getName().equals("ESP32Test")) {  // We need to change this to match the name of the device
                     mmDevice = device;
                     box.setText("DK: success");
                     break;
@@ -115,6 +117,7 @@ public class BluetoothTest extends Activity {
             System.out.print("DK: size <= 0");
         }
     }
+
 
     void openBT() throws IOException {
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard //SerialPortService ID
@@ -130,6 +133,38 @@ public class BluetoothTest extends Activity {
         {
             System.out.println("DK: null device");
         }
+    }
+
+    public static String difference(String str1, String str2) {
+        if (str1 == null) {
+            return str2;
+        }
+        if (str2 == null) {
+            return str1;
+        }
+        int at = indexOfDifference(str1, str2);
+        if (at == -1) {
+            return "same";
+        }
+        return str2.substring(at);
+    }
+    public static int indexOfDifference(String str1, String str2) {
+        if (str1 == str2) {
+            return -1;
+        }
+        if (str1 == null || str2 == null) {
+            return 0;
+        }
+        int i;
+        for (i = 0; i < str1.length() && i < str2.length(); ++i) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                break;
+            }
+        }
+        if (i < str2.length() || i < str1.length()) {
+            return i;
+        }
+        return -1;
     }
 
     void beginListenForData() {
