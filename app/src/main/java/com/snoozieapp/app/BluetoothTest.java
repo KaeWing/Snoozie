@@ -115,7 +115,7 @@ public class BluetoothTest extends Activity {
         }
         else
         {
-            System.out.println("DK: null device");
+            box.setText("DK: null device");
         }
     }
 
