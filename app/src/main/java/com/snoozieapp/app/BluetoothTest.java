@@ -102,7 +102,6 @@ public class BluetoothTest extends Activity {
         }
     }
 
-
     void openBT() throws IOException {
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard //SerialPortService ID
         if (mmDevice != null)
@@ -117,38 +116,6 @@ public class BluetoothTest extends Activity {
         {
             box.setText("DK: null device");
         }
-    }
-
-    public static String difference(String str1, String str2) {
-        if (str1 == null) {
-            return str2;
-        }
-        if (str2 == null) {
-            return str1;
-        }
-        int at = indexOfDifference(str1, str2);
-        if (at == -1) {
-            return "same";
-        }
-        return str2.substring(at);
-    }
-    public static int indexOfDifference(String str1, String str2) {
-        if (str1 == str2) {
-            return -1;
-        }
-        if (str1 == null || str2 == null) {
-            return 0;
-        }
-        int i;
-        for (i = 0; i < str1.length() && i < str2.length(); ++i) {
-            if (str1.charAt(i) != str2.charAt(i)) {
-                break;
-            }
-        }
-        if (i < str2.length() || i < str1.length()) {
-            return i;
-        }
-        return -1;
     }
 
     void beginListenForData() {
@@ -179,6 +146,15 @@ public class BluetoothTest extends Activity {
                                             // DK: idk what this is
                                             // myTextbox.setText(data);
                                             box.setText("DK: " + data);
+
+                                            // parse the data
+                                            // string -> char array
+                                            // char a = array[0]
+                                            // switch
+                                            // a == 'p'
+                                            // pressure
+                                            //  ..
+                                            //  ..
                                         }
                                     });
                                 }
