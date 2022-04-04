@@ -90,31 +90,16 @@ public class BluetoothTest extends Activity {
             startActivityForResult(enableBluetooth, 0);
         }
 
-        StringBuilder sbdk = new StringBuilder();
-        sbdk.append("DK: \n");
-
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         if(pairedDevices.size() > 0) {
             for(BluetoothDevice device : pairedDevices) {
 
-                String devicename = "ESP32Test";
-
-                sbdk.append("ESP32Test\n");
-                sbdk.append(device.getName());
-                sbdk.append("\n");
-                sbdk.append(difference("ESP32Test", device.getName()));
-                sbdk.append("\n");
-                sbdk.append(devicename.equals(device.getName()));
-                sbdk.append("\n");
-                sbdk.append("\n");
-                
-                if(devicename.equals(device.getName())) {  // We need to change this to match the name of the device
+                if(device.getName().equals("ESP32Test")) {  // We need to change this to match the name of the device
                     mmDevice = device;
                     box.setText("DK: success");
                     break;
                 }
             }
-            box.setText(sbdk.toString());
         }
         else
         {
