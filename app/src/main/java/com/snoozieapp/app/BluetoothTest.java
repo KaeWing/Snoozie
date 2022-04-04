@@ -108,10 +108,10 @@ public class BluetoothTest extends Activity {
         if (mmDevice != null)
         {
             mmSocket = mmDevice.createRfcommSocketToServiceRecord(uuid);
-            mmSocket.connect();
-            mmOutputStream = mmSocket.getOutputStream();
-            mmInputStream = mmSocket.getInputStream();
-            beginListenForData();
+            // mmSocket.connect();
+            // mmOutputStream = mmSocket.getOutputStream();
+            // mmInputStream = mmSocket.getInputStream();
+            // beginListenForData();
         }
         else
         {
