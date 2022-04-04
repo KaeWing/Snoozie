@@ -98,6 +98,7 @@ public class BluetoothTest extends Activity {
             for(BluetoothDevice device : pairedDevices) {
 
                 sbdk.append(device.getName());
+                sbdk.append("-ESP32Test-");
                 sbdk.append("\n");
 
                 if(device.getName().contains("ESP32Test")) {  // We need to change this to match the name of the device
