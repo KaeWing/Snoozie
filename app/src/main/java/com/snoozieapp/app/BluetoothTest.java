@@ -173,17 +173,6 @@ public class BluetoothTest extends Activity {
                                                 case "accel":
                                                     BluetoothDebugPage.printGyroData(dataArray[1]);
                                             }
-
-                                            BluetoothDebugPage.printMicData(data);
-
-                                            // parse the data
-                                            // string -> char array
-                                            // char a = array[0]
-                                            // switch
-                                            // a == 'p'
-                                            // pressure
-                                            //  ..
-                                            //  ..
                                         }
                                     });
                                 }
