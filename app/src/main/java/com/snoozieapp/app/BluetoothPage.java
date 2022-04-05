@@ -35,14 +35,10 @@ public class BluetoothPage extends AppCompatActivity {
     BluetoothAdapter mBlueAdapter;
 
 
-    // Debug UI elements
-    private TextView debug;
-
     // Bluetooth Service
     private BluetoothService mBluetoothService = null;
     private Button bluetoothDebugBtn;
     private Button bluetoothTestBtn;
-    boolean debugEnabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,15 +69,6 @@ public class BluetoothPage extends AppCompatActivity {
         mOffBtn = findViewById(R.id.offBtn);
         mDiscoverBtn = findViewById(R.id.discoverableBtn);
         mPairedBtn = findViewById(R.id.pairedBtn);
-        debug = findViewById(R.id.debug_menu);
-
-
-        if (!debugEnabled)
-        {
-            debug.setVisibility(View.INVISIBLE);
-        }
-
-        debug.setText("butt soup! -Troy Barnes, star quarterback at riverside high. haha im so funny and quirky please help im dying inside this is not a joke");
 
         //adapter
         mBlueAdapter = BluetoothAdapter.getDefaultAdapter();

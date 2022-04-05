@@ -67,15 +67,6 @@
         android:text="Get Paired Devices"
         android:textSize="26dp" />
 
-    <TextView
-        android:id="@+id/debug_menu"
-        android:minWidth="200dp"
-        android:text="test"
-        android:textAlignment="textStart"
-        android:textColor="#000"
-        android:layout_marginTop="500dp"
-        android:layout_width="380dp"
-        android:layout_height="30dp" />
 
     <Button
         android:id="@+id/testBtn"

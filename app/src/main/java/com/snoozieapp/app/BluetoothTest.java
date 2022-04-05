@@ -114,7 +114,9 @@ public class BluetoothTest extends Activity {
         }
         else
         {
-            box.setText("DK: null device");
+            box.setText("DK: null device... Testing using loop of vars");
+
+            dataSimulation();
         }
     }
 
@@ -143,9 +145,17 @@ public class BluetoothTest extends Activity {
 
                                     handler.post(new Runnable() {
                                         public void run() {
-                                            // DK: idk what this is
-                                            // myTextbox.setText(data);
                                             box.setText("DK: " + data);
+
+                                            BluetoothDebugPage.printMicData(data);
+
+                                            try
+                                            {
+                                                Thread.sleep(500);
+                                            }
+                                            catch (InterruptedException e) {
+                                                e.printStackTrace();
+                                            }
 
                                             // parse the data
                                             // string -> char array
@@ -192,5 +202,34 @@ public class BluetoothTest extends Activity {
         Toast msg = Toast.makeText(getBaseContext(),
                 theMsg, (Toast.LENGTH_LONG)/160);
         msg.show();
+    }
+
+    private void dataSimulation() {
+        workerThread = new Thread(new Runnable() {
+            public void run() {
+                while(!Thread.currentThread().isInterrupted()) {
+
+                            for(int i = 0; i < 100; i++)
+                            {
+                                BluetoothDebugPage.printMicData(Integer.toString(i));
+                                BluetoothDebugPage.printPressureData(Integer.toString(i + 1));
+                                BluetoothDebugPage.printGyroData(Integer.toString(i + 2));
+                                BluetoothDebugPage.printLightData(Integer.toString(i + 3));
+                                BluetoothDebugPage.printTempData(Integer.toString(i + 4));
+
+                                try
+                                {
+                                    Thread.sleep(1000);
+                                }
+                                catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                }
+            }
+        });
+
+        workerThread.start();
     }
 }
