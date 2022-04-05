@@ -94,7 +94,16 @@ public class BluetoothDebugPage extends AppCompatActivity {
 
             sb.append(c3);
             sb.append(' ');
-            sb.append(data);
+
+            String [] dataValues = data.split(",");
+
+            for (int i = 0; i < dataValues.length; i++)
+            {
+                sb.append((char) ('x' + i));
+                sb.append(": ");
+                sb.append(dataValues[i]);
+                sb.append("   ");
+            }
 
             gyroData.setText(sb.toString());
         }
@@ -138,7 +147,17 @@ public class BluetoothDebugPage extends AppCompatActivity {
 
             sb.append(c5);
             sb.append(' ');
-            sb.append(data);
+
+
+            String [] dataValues = data.split(",");
+
+            for (int i = 0; i < dataValues.length; i++)
+            {
+                sb.append(Integer.toString(i));
+                sb.append(": ");
+                sb.append(dataValues[i]);
+                sb.append("   ");
+            }
 
             tempData.setText(sb.toString());
         }

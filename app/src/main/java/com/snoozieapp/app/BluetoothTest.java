@@ -160,15 +160,21 @@ public class BluetoothTest extends Activity {
                                         public void run() {
                                             box.setText("DK: " + data);
 
-                                            BluetoothDebugPage.printMicData(data);
+                                            String [] dataArray = data.split(": ");
 
-                                            try
+                                            switch(dataArray[0])
                                             {
-                                                Thread.sleep(500);
+                                                case "Light Sensor value":
+                                                    BluetoothDebugPage.printLightData(dataArray[1]);
+                                                case "pressureValue":
+                                                    BluetoothDebugPage.printPressureData(dataArray[1]);
+                                                case "tempHumidValue":
+                                                    BluetoothDebugPage.printTempData(dataArray[1]);
+                                                case "accel":
+                                                    BluetoothDebugPage.printGyroData(dataArray[1]);
                                             }
-                                            catch (InterruptedException e) {
-                                                e.printStackTrace();
-                                            }
+
+                                            BluetoothDebugPage.printMicData(data);
 
                                             // parse the data
                                             // string -> char array
