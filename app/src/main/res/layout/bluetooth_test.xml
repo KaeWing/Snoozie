@@ -7,17 +7,10 @@
     <TextView
         android:id="@+id/box"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginTop="500dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
         android:minWidth="200dp"
         android:textColor="#000" />
-
-<!--    <EditText-->
-<!--        android:id = "@+id/entry"-->
-<!--        android:layout_width="200dp"-->
-<!--        android:layout_marginTop="200dp"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:layout_height="wrap_content" />-->
 
     <Button
         android:id="@+id/openBtn"
@@ -36,4 +29,14 @@
         android:layout_marginTop="380dp"
         android:text="Close"
         android:textSize="26dp" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="460dp"
+        android:text="Back"
+        android:textSize="26dp" />
+
 </FrameLayout>

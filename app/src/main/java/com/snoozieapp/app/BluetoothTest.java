@@ -45,6 +45,7 @@ public class BluetoothTest extends Activity {
         Button closeButton = (Button)findViewById(R.id.closeBtn);
         //myLabel = (TextView)findViewById(R.id.label);
         box = (TextView) findViewById(R.id.box);
+        Button backButton = (Button)findViewById(R.id.backBtn);
 
         //Open Button
         openButton.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +79,18 @@ public class BluetoothTest extends Activity {
                 catch (IOException ex) { }
             }
         });
+
+        //Back button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openBluetoothPage();
+            }
+        });
+    }
+
+    public void openBluetoothPage() {
+        Intent intent = new Intent(BluetoothTest.this, BluetoothPage.class);
+        startActivity(intent);
     }
 
     void findBT() {
