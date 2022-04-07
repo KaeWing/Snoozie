@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -116,7 +117,7 @@ public class MusicPage extends AppCompatActivity {
                 arraylist.add(filePath);
             }
         } catch (NullPointerException e) {
-            //toastMsg("Error : " + e + " " + e.getStackTrace()[0].getLineNumber());
+            //Toast.makeText(this, "No local files found", Toast.LENGTH_SHORT).show();
         }
 
         return arraylist;
