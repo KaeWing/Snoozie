@@ -10,9 +10,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.EditText;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -27,7 +27,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -176,6 +175,7 @@ public class BluetoothTest extends Activity {
                                                     Track.graphLight(Instant.now(), dataArray[1]);
                                                 case "pressureValue":
                                                     BluetoothDebug.printPressureData(dataArray[1]);
+                                                    Track.graphPressure(Instant.now(), dataArray[1]);
                                                 case "tempHumidValue":
                                                     BluetoothDebug.printTempData(dataArray[1]);
                                                 case "accel":
@@ -233,6 +233,7 @@ public class BluetoothTest extends Activity {
                                 BluetoothDebug.printMicData("N/A");
                                 // Pressure Data
                                 BluetoothDebug.printPressureData(Track.pressureRead.get(i));
+                                Track.graphPressure(Instant.now(), Track.pressureRead.get(i));
                                 // Accelerometer Data
                                 BluetoothDebug.printGyroData(Track.xRead.get(i) + "," + Track.yRead.get(i) + "," + Track.zRead.get(i));
                                 Track.graphMotion(Instant.now(), Track.xRead.get(i) + "," + Track.yRead.get(i) + "," + Track.zRead.get(i));

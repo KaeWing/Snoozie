@@ -2,16 +2,15 @@ package com.snoozieapp.app.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.snoozieapp.app.bluetooth.BluetoothPage;
+import androidx.fragment.app.Fragment;
+
 import com.snoozieapp.app.R;
+import com.snoozieapp.app.bluetooth.BluetoothPage;
 
 public class Settings extends Fragment {
     private Button bluetoothSettingsBtn;

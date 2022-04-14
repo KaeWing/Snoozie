@@ -1,11 +1,11 @@
 package com.snoozieapp.app.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.snoozieapp.app.MainApp;
 import com.snoozieapp.app.R;

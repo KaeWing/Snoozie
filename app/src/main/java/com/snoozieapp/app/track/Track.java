@@ -3,27 +3,20 @@ package com.snoozieapp.app.track;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.snoozieapp.app.R;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
@@ -32,19 +25,19 @@ public class Track extends Fragment {
     private View view;
     private static GraphView motionGraph;
     private static GraphView lightGraph;
-    private static GraphView audioGraph;
+    private static GraphView pressureGraph;
 
     private static ArrayList<DataPoint> motionXData = new ArrayList<>(600000);
     private static ArrayList<DataPoint> motionYData = new ArrayList<>(600000);
     private static ArrayList<DataPoint> motionZData = new ArrayList<>(600000);
     private static ArrayList<DataPoint> lightData = new ArrayList<>(600000);
-    private static ArrayList<DataPoint> audioData = new ArrayList<>(600000);
+    private static ArrayList<DataPoint> pressureData = new ArrayList<>(600000);
 
     private static LineGraphSeries<DataPoint> motionXLineSeries = new LineGraphSeries<>();
     private static LineGraphSeries<DataPoint> motionYLineSeries = new LineGraphSeries<>();
     private static LineGraphSeries<DataPoint> motionZLineSeries = new LineGraphSeries<>();
     private static LineGraphSeries<DataPoint> lightLineSeries = new LineGraphSeries<>();
-    private static LineGraphSeries<DataPoint> audioLineSeries = new LineGraphSeries<>();
+    private static LineGraphSeries<DataPoint> pressureLineSeries = new LineGraphSeries<>();
 
     public static Instant start = null;
 
@@ -65,10 +58,10 @@ public class Track extends Fragment {
 
         initializeMotionGraph(view);
         initializeLightGraph(view);
-        initializeAudioGraph(view);
+        initializePressureGraph(view);
 
         // Example Graphs
-        // exampleAudioGraph();
+        // examplePressureGraph();
         // exampleMotionGraph();
         // exampleLightGraph();
 
@@ -84,38 +77,34 @@ public class Track extends Fragment {
             start = Instant.now();
         }
 
-        float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
-        float y1 = -1;      // error detection
-        float y2 = -2;      // error detection
-        float y3 = -3;      // error detection
-
         // Split Data
         String [] dataValues = data.split(",");
 
         if (dataValues.length == 3)
         {
-            y1 = Float.valueOf(dataValues[0]).floatValue();
-            y2 = Float.valueOf(dataValues[1]).floatValue();
-            y3 = Float.valueOf(dataValues[2]).floatValue();
-        }
+            float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
+            float y1 = Float.valueOf(dataValues[0]).floatValue();
+            float y2 = Float.valueOf(dataValues[1]).floatValue();
+            float y3 = Float.valueOf(dataValues[2]).floatValue();
 
-        DataPoint d1 = new DataPoint(x, y1);
-        DataPoint d2 = new DataPoint(x, y2);
-        DataPoint d3 = new DataPoint(x, y3);
+            DataPoint d1 = new DataPoint(x, y1);
+            DataPoint d2 = new DataPoint(x, y2);
+            DataPoint d3 = new DataPoint(x, y3);
 
-        motionXLineSeries.appendData(d1, false, 1000000);
-        motionYLineSeries.appendData(d2, false, 1000000);
-        motionZLineSeries.appendData(d3, false, 1000000);
+            motionXLineSeries.appendData(d1, false, 1000000);
+            motionYLineSeries.appendData(d2, false, 1000000);
+            motionZLineSeries.appendData(d3, false, 1000000);
 
-        // Scale the X axis
-        motionGraph.getViewport().setMaxX(x);
-        if (x-1 >= 0)
-        {
-            motionGraph.getViewport().setMinX(x-1);
-        }
-        else
-        {
-            motionGraph.getViewport().setMinX(0);
+            // Scale the X axis
+            motionGraph.getViewport().setMaxX(x);
+            if (x-1.5 >= 0)
+            {
+                motionGraph.getViewport().setMinX(x - 1.5);
+            }
+            else
+            {
+                motionGraph.getViewport().setMinX(0);
+            }
         }
     }
 
@@ -134,9 +123,9 @@ public class Track extends Fragment {
 
         // Scale the X axis
         lightGraph.getViewport().setMaxX(x);
-        if (x-1 >= 0)
+        if (x-1.5 >= 0)
         {
-            lightGraph.getViewport().setMinX(x-1);
+            lightGraph.getViewport().setMinX(x-1.5);
         }
         else
         {
@@ -144,22 +133,58 @@ public class Track extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void graphPressure(Instant time, String data) {
+        if (start == null)
+        {
+            start = Instant.now();
+        }
+
+        float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
+        float y = Float.valueOf(data).floatValue();
+
+        DataPoint d = new DataPoint(x, y);
+        pressureLineSeries.appendData(d, false, 1000000);
+
+        // Scale the X axis
+        pressureGraph.getViewport().setMaxX(x);
+        if (x-1.5 >= 0)
+        {
+            pressureGraph.getViewport().setMinX(x-1.5);
+        }
+        else
+        {
+            pressureGraph.getViewport().setMinX(0);
+        }
+    }
+
     private static void initializeMotionGraph(View view) {
         motionGraph = (GraphView) view.findViewById(R.id.motion_graph);
 
+        // Titles
         motionGraph.setTitle("Motion Data");
         motionGraph.setTitleColor(R.color.black);
         motionGraph.setTitleTextSize(50);
 
-        // Set color of different axes
+        // Set color and title of different axes
         motionXLineSeries.setColor(Color.RED);
+        motionXLineSeries.setTitle("X");
         motionYLineSeries.setColor(Color.BLUE);
+        motionYLineSeries.setTitle("Y");
         motionZLineSeries.setColor(Color.GREEN);
+        motionZLineSeries.setTitle("Z");
 
         // Add Data
         motionGraph.addSeries(motionXLineSeries);
         motionGraph.addSeries(motionYLineSeries);
         motionGraph.addSeries(motionZLineSeries);
+
+        // Legend
+        motionGraph.getLegendRenderer().setVisible(true);
+
+        // Axis Labels
+        GridLabelRenderer gridLabel = motionGraph.getGridLabelRenderer();
+        gridLabel.setHorizontalAxisTitle("Time (s)");
     }
 
     private static void initializeLightGraph(View view) {
@@ -171,17 +196,25 @@ public class Track extends Fragment {
 
         // Add Data
         lightGraph.addSeries(lightLineSeries);
+
+        // Axis Labels
+        GridLabelRenderer gridLabel = lightGraph.getGridLabelRenderer();
+        gridLabel.setHorizontalAxisTitle("Time (s)");
     }
 
-    private static void initializeAudioGraph(View view) {
-        audioGraph = (GraphView) view.findViewById(R.id.audio_graph);
+    private static void initializePressureGraph(View view) {
+        pressureGraph = (GraphView) view.findViewById(R.id.pressure_graph);
 
-        audioGraph.setTitle("Audio Data");
-        audioGraph.setTitleColor(R.color.black);
-        audioGraph.setTitleTextSize(50);
+        pressureGraph.setTitle("Pressure Data");
+        pressureGraph.setTitleColor(R.color.black);
+        pressureGraph.setTitleTextSize(50);
 
         // Add Data
-        audioGraph.addSeries(audioLineSeries);
+        pressureGraph.addSeries(pressureLineSeries);
+
+        // Axis Labels
+        GridLabelRenderer gridLabel = pressureGraph.getGridLabelRenderer();
+        gridLabel.setHorizontalAxisTitle("Time (s)");
     }
 
 
@@ -236,7 +269,7 @@ public class Track extends Fragment {
 
     }
 
-    private void exampleAudioGraph() {
+    private void examplePressureGraph() {
 
         // Generate data
         for (int i = 0; i < 300000; i++)
@@ -244,17 +277,17 @@ public class Track extends Fragment {
             // 1/50 meaning takes 5 seconds to take a breath
             //Date time = Date
             DataPoint temp = new DataPoint(((float) i / 36000),(Math.sin((0.1 * i *  3.14) / 2)) + 1);
-            audioData.add(temp);
-            audioLineSeries.appendData(temp, false, 1000000);
+            pressureData.add(temp);
+            pressureLineSeries.appendData(temp, false, 1000000);
         }
 
         // Set Axis Scale
-        audioGraph.getViewport().setXAxisBoundsManual(true);
-        audioGraph.getViewport().setYAxisBoundsManual(true);
-        audioGraph.getViewport().setScrollable(true);           // idk what this does
-        audioGraph.getViewport().setMaxX(0.01);
-        audioGraph.getViewport().setMinX(0);
-        audioGraph.getViewport().setMaxY(3);
-        audioGraph.getViewport().setMinY(0);
+        pressureGraph.getViewport().setXAxisBoundsManual(true);
+        pressureGraph.getViewport().setYAxisBoundsManual(true);
+        pressureGraph.getViewport().setScrollable(true);           // idk what this does
+        pressureGraph.getViewport().setMaxX(0.01);
+        pressureGraph.getViewport().setMinX(0);
+        pressureGraph.getViewport().setMaxY(3);
+        pressureGraph.getViewport().setMinY(0);
     }
 }

@@ -11,10 +11,10 @@
         android:layout_marginTop="40dp"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="40dp"/>\
+        android:textSize="40dp"/>
 
     <com.jjoe64.graphview.GraphView
-        android:id="@+id/audio_graph"
+        android:id="@+id/pressure_graph"
         android:layout_gravity="center"
         android:layout_width="360dp"
         android:layout_height="180dp"
