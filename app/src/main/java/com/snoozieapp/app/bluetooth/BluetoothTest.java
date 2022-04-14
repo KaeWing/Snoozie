@@ -229,17 +229,18 @@ public class BluetoothTest extends Activity {
 
                             for(int i = 0; i < Track.lightRead.size(); i++)
                             {
+                                // Audio Data
                                 BluetoothDebug.printMicData("N/A");
-
+                                // Pressure Data
                                 BluetoothDebug.printPressureData(Track.pressureRead.get(i));
-                                Track.graphMotion(Instant.now(), Track.pressureRead.get(i));
-
-                                BluetoothDebug.printGyroData("X: " + Track.xRead.get(i) + "    Y: " + Track.yRead.get(i) + "    Z:" + Track.zRead.get(i));
-
+                                // Accelerometer Data
+                                BluetoothDebug.printGyroData(Track.xRead.get(i) + "," + Track.yRead.get(i) + "," + Track.zRead.get(i));
+                                Track.graphMotion(Instant.now(), Track.xRead.get(i) + "," + Track.yRead.get(i) + "," + Track.zRead.get(i));
+                                // Light Data
                                 BluetoothDebug.printLightData(Track.lightRead.get(i));
                                 Track.graphLight(Instant.now(), Track.lightRead.get(i));
-
-                                BluetoothDebug.printTempData("N/A");
+                                // Temp Data
+                                BluetoothDebug.printTempData("N/A,N/A");
 
                                 try
                                 {

@@ -1,5 +1,6 @@
 package com.snoozieapp.app.track;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -33,11 +34,15 @@ public class Track extends Fragment {
     private static GraphView lightGraph;
     private static GraphView audioGraph;
 
-    private static ArrayList<DataPoint> motionData = new ArrayList<>(600000);
+    private static ArrayList<DataPoint> motionXData = new ArrayList<>(600000);
+    private static ArrayList<DataPoint> motionYData = new ArrayList<>(600000);
+    private static ArrayList<DataPoint> motionZData = new ArrayList<>(600000);
     private static ArrayList<DataPoint> lightData = new ArrayList<>(600000);
     private static ArrayList<DataPoint> audioData = new ArrayList<>(600000);
 
-    private static LineGraphSeries<DataPoint> motionLineSeries = new LineGraphSeries<>();
+    private static LineGraphSeries<DataPoint> motionXLineSeries = new LineGraphSeries<>();
+    private static LineGraphSeries<DataPoint> motionYLineSeries = new LineGraphSeries<>();
+    private static LineGraphSeries<DataPoint> motionZLineSeries = new LineGraphSeries<>();
     private static LineGraphSeries<DataPoint> lightLineSeries = new LineGraphSeries<>();
     private static LineGraphSeries<DataPoint> audioLineSeries = new LineGraphSeries<>();
 
@@ -80,10 +85,27 @@ public class Track extends Fragment {
         }
 
         float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
-        float y = Float.valueOf(data).floatValue();
+        float y1 = -1;      // error detection
+        float y2 = -2;      // error detection
+        float y3 = -3;      // error detection
 
-        DataPoint d = new DataPoint(x, y);
-        motionLineSeries.appendData(d, false, 1000000);
+        // Split Data
+        String [] dataValues = data.split(",");
+
+        if (dataValues.length == 3)
+        {
+            y1 = Float.valueOf(dataValues[0]).floatValue();
+            y2 = Float.valueOf(dataValues[1]).floatValue();
+            y3 = Float.valueOf(dataValues[2]).floatValue();
+        }
+
+        DataPoint d1 = new DataPoint(x, y1);
+        DataPoint d2 = new DataPoint(x, y2);
+        DataPoint d3 = new DataPoint(x, y3);
+
+        motionXLineSeries.appendData(d1, false, 1000000);
+        motionYLineSeries.appendData(d2, false, 1000000);
+        motionZLineSeries.appendData(d3, false, 1000000);
 
         // Scale the X axis
         motionGraph.getViewport().setMaxX(x);
@@ -129,8 +151,15 @@ public class Track extends Fragment {
         motionGraph.setTitleColor(R.color.black);
         motionGraph.setTitleTextSize(50);
 
+        // Set color of different axes
+        motionXLineSeries.setColor(Color.RED);
+        motionYLineSeries.setColor(Color.BLUE);
+        motionZLineSeries.setColor(Color.GREEN);
+
         // Add Data
-        motionGraph.addSeries(motionLineSeries);
+        motionGraph.addSeries(motionXLineSeries);
+        motionGraph.addSeries(motionYLineSeries);
+        motionGraph.addSeries(motionZLineSeries);
     }
 
     private static void initializeLightGraph(View view) {
@@ -172,8 +201,8 @@ public class Track extends Fragment {
         for (int i = 0; i < 300000; i++)
         {
             DataPoint temp = new DataPoint(((float) i / 36000),10 * (Math.sin((0.021 * i *  3.14) / 2)) + 1);
-            motionData.add(temp);
-            motionLineSeries.appendData(temp, false, 1000000);
+            motionXData.add(temp);
+            motionXLineSeries.appendData(temp, false, 1000000);
 
 
         }

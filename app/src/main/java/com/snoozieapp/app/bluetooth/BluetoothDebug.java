@@ -51,7 +51,7 @@ public class BluetoothDebug extends AppCompatActivity {
             StringBuilder sb = new StringBuilder();
 
             sb.append(c1);
-            sb.append(' ');
+            sb.append("\t");
             sb.append(data);
 
             micData.setText(sb.toString());
@@ -73,7 +73,7 @@ public class BluetoothDebug extends AppCompatActivity {
             StringBuilder sb = new StringBuilder();
 
             sb.append(c2);
-            sb.append(' ');
+            sb.append("\t");
             sb.append(data);
 
             pressureData.setText(sb.toString());
@@ -93,10 +93,19 @@ public class BluetoothDebug extends AppCompatActivity {
         if(gyroData != null)
         {
             StringBuilder sb = new StringBuilder();
+            sb.append(c3);
+            sb.append("\t");
 
-            sb.append(c5);
-            sb.append(' ');
-            sb.append(data);
+            // Split multiple tokens
+            String [] dataValues = data.split(",");
+
+            for (int i = 0; i < dataValues.length; i++)
+            {
+                sb.append((char) ('X' + i));
+                sb.append(": ");
+                sb.append(dataValues[i]);
+                sb.append("\t\t");
+            }
 
             gyroData.setText(sb.toString());
         }
@@ -117,7 +126,7 @@ public class BluetoothDebug extends AppCompatActivity {
             StringBuilder sb = new StringBuilder();
 
             sb.append(c4);
-            sb.append(' ');
+            sb.append("\t");
             sb.append(data);
 
             lightData.setText(sb.toString());
@@ -137,10 +146,19 @@ public class BluetoothDebug extends AppCompatActivity {
         if(tempData != null)
         {
             StringBuilder sb = new StringBuilder();
-
             sb.append(c5);
-            sb.append(' ');
-            sb.append(data);
+            sb.append("\t");
+
+            // Split multiple tokens
+            String [] dataValues = data.split(",");
+
+            for (int i = 0; i < dataValues.length; i++)
+            {
+                sb.append((char) ('T' - (i * 13)));
+                sb.append(": ");
+                sb.append(dataValues[i]);
+                sb.append("\t\t");
+            }
 
             tempData.setText(sb.toString());
         }
