@@ -10,9 +10,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -27,6 +27,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -133,7 +134,6 @@ public class BluetoothTest extends Activity {
         }
         else
         {
-            box.setText("DK: null device... Testing using loop of vars");
             dataSimulation();
         }
     }
@@ -164,8 +164,6 @@ public class BluetoothTest extends Activity {
                                     handler.post(new Runnable() {
                                         @RequiresApi(api = Build.VERSION_CODES.O)
                                         public void run() {
-                                            box.setText("DK: " + data);
-
                                             String [] dataArray = data.split(": ");
 
                                             switch(dataArray[0])
@@ -173,14 +171,18 @@ public class BluetoothTest extends Activity {
                                                 case "Light Sensor value":
                                                     BluetoothDebug.printLightData(dataArray[1]);
                                                     Track.graphLight(Instant.now(), dataArray[1]);
+                                                    break;
                                                 case "pressureValue":
                                                     BluetoothDebug.printPressureData(dataArray[1]);
                                                     Track.graphPressure(Instant.now(), dataArray[1]);
+                                                    break;
                                                 case "tempHumidValue":
                                                     BluetoothDebug.printTempData(dataArray[1]);
+                                                    break;
                                                 case "accel":
                                                     BluetoothDebug.printGyroData(dataArray[1]);
                                                     Track.graphMotion(Instant.now(), dataArray[1]);
+                                                    break;
                                             }
                                         }
                                     });

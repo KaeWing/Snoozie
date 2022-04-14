@@ -1,5 +1,7 @@
 package com.snoozieapp.app.alarms;
 
+import android.app.Activity;
+import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
