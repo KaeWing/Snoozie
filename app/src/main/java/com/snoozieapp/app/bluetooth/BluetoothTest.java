@@ -5,19 +5,29 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.snoozieapp.app.R;
+import androidx.annotation.RequiresApi;
 
+import com.snoozieapp.app.R;
+import com.snoozieapp.app.track.Track;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -43,7 +53,7 @@ public class BluetoothTest extends Activity {
         setContentView(R.layout.bluetooth_test);
 
         Button openButton = (Button)findViewById(R.id.openBtn);
-        //Button sendButton = (Button)findViewById(R.id.send);
+        Button testButton = (Button)findViewById(R.id.loadTestBtn);
         Button closeButton = (Button)findViewById(R.id.closeBtn);
         //myLabel = (TextView)findViewById(R.id.label);
         box = (TextView) findViewById(R.id.box);
@@ -60,17 +70,12 @@ public class BluetoothTest extends Activity {
             }
         });
 
-        //Send Button
-//        sendButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                try {
-//                    sendData();
-//                }
-//                catch (IOException ex) {
-//                    showMessage("SEND FAILED");
-//                }
-//            }
-//        });
+        //Load Test Data Button
+        testButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                readData();
+            }
+        });
 
         //Close button
         closeButton.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +135,6 @@ public class BluetoothTest extends Activity {
         else
         {
             box.setText("DK: null device... Testing using loop of vars");
-
             dataSimulation();
         }
     }
@@ -159,6 +163,7 @@ public class BluetoothTest extends Activity {
                                     readBufferPosition = 0;
 
                                     handler.post(new Runnable() {
+                                        @RequiresApi(api = Build.VERSION_CODES.O)
                                         public void run() {
                                             box.setText("DK: " + data);
 
@@ -168,12 +173,14 @@ public class BluetoothTest extends Activity {
                                             {
                                                 case "Light Sensor value":
                                                     BluetoothDebug.printLightData(dataArray[1]);
+                                                    Track.graphLight(Instant.now(), dataArray[1]);
                                                 case "pressureValue":
                                                     BluetoothDebug.printPressureData(dataArray[1]);
                                                 case "tempHumidValue":
                                                     BluetoothDebug.printTempData(dataArray[1]);
                                                 case "accel":
                                                     BluetoothDebug.printGyroData(dataArray[1]);
+                                                    Track.graphMotion(Instant.now(), dataArray[1]);
                                             }
                                         }
                                     });
@@ -216,20 +223,27 @@ public class BluetoothTest extends Activity {
 
     private void dataSimulation() {
         workerThread = new Thread(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void run() {
                 while(!Thread.currentThread().isInterrupted()) {
 
-                            for(int i = 0; i < 100; i++)
+                            for(int i = 0; i < Track.lightRead.size(); i++)
                             {
-                                BluetoothDebug.printMicData(Integer.toString(i));
-                                BluetoothDebug.printPressureData(Integer.toString(i + 1));
-                                BluetoothDebug.printGyroData(Integer.toString(i + 2));
-                                BluetoothDebug.printLightData(Integer.toString(i + 3));
-                                BluetoothDebug.printTempData(Integer.toString(i + 4));
+                                BluetoothDebug.printMicData("N/A");
+
+                                BluetoothDebug.printPressureData(Track.pressureRead.get(i));
+                                Track.graphMotion(Instant.now(), Track.pressureRead.get(i));
+
+                                BluetoothDebug.printGyroData("X: " + Track.xRead.get(i) + "    Y: " + Track.yRead.get(i) + "    Z:" + Track.zRead.get(i));
+
+                                BluetoothDebug.printLightData(Track.lightRead.get(i));
+                                Track.graphLight(Instant.now(), Track.lightRead.get(i));
+
+                                BluetoothDebug.printTempData("N/A");
 
                                 try
                                 {
-                                    Thread.sleep(1000);
+                                    Thread.sleep(200);
                                 }
                                 catch (InterruptedException e)
                                 {
@@ -241,5 +255,34 @@ public class BluetoothTest extends Activity {
         });
 
         workerThread.start();
+    }
+
+    private void readData() {
+        InputStream is = getResources().openRawResource(R.raw.data);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, Charset.forName("UTF-8"))
+        );
+
+        String line  = "";
+
+        try {
+            while ( (line = reader.readLine()) != null) {
+                //Log.d("MyActivity", "Line: " + line);
+                String[] tokens = line.split(",");
+                //System.out.println("Light: " + tokens[0] + " Pressure: " + tokens[1] + " X: " + tokens[2] + " Y: " + tokens[3] + " Z: " + tokens[4]);
+
+                if (!tokens[0].equals("Light"))
+                {
+                    Track.lightRead.add(tokens[0]);
+                    Track.pressureRead.add(tokens[1]);
+                    Track.xRead.add(tokens[2]);
+                    Track.yRead.add(tokens[3]);
+                    Track.zRead.add(tokens[4]);
+                }
+            }
+        } catch (IOException e) {
+            Log.wtf("MyActivity,", "Error reading data file on line " + line, e);
+            e.printStackTrace();
+        }
     }
 }
