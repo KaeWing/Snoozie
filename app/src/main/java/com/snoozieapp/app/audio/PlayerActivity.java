@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.audio;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
+import com.snoozieapp.app.R;
 
 import java.io.File;
 import java.util.ArrayList;

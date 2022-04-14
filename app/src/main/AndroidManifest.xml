@@ -14,33 +14,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SnoozieApp">
         <activity
-            android:name=".AmbientPage"
+            android:name=".audio.AmbientPage"
             android:exported="false" />
         <activity
-            android:name=".PlayerActivity"
+            android:name=".audio.PlayerActivity"
             android:exported="false" />
         <activity
-            android:name=".MusicPage"
+            android:name=".audio.MusicPage"
             android:exported="false" />
         <activity
-            android:name=".BluetoothTest"
+            android:name=".bluetooth.BluetoothTest"
             android:exported="false" />
         <activity
-            android:name=".BluetoothPage"
+            android:name=".bluetooth.BluetoothPage"
             android:exported="false" />
         <activity
-            android:name=".BluetoothDebugPage"
+            android:name=".bluetooth.BluetoothDebug"
             android:exported="false" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".ui.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomePage" />
+        <activity android:name=".MainApp" />
 
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".alarms.AlarmReceiver" />
     </application>
 
 </manifest>

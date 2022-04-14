@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+
+import com.snoozieapp.app.MainApp;
+import com.snoozieapp.app.R;
 
 // Splash Screen that shows up for a few seconds with Snoozie Logo
 public class SplashScreen extends AppCompatActivity {
@@ -21,7 +24,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, HomePage.class);
+                Intent intent = new Intent(SplashScreen.this, MainApp.class);
                 startActivity(intent);
                 finish();
             }

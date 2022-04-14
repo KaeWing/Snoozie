@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.track;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.snoozieapp.app.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -62,10 +63,10 @@ public class Track extends Fragment {
         );
 
         String line  = "";
-        while (true) {
+
             try {
                 while ( (line = reader.readLine()) != null) {
-                    Log.d("MyActivity", "Line: " + line);
+                    //Log.d("MyActivity", "Line: " + line);
                     String[] tokens = line.split(",");
                     //System.out.println("Light: " + tokens[0] + " Pressure: " + tokens[1] + " X: " + tokens[2] + " Y: " + tokens[3] + " Z: " + tokens[4]);
                 }
@@ -74,7 +75,7 @@ public class Track extends Fragment {
                 e.printStackTrace();
             }
 
-        }
+
     }
 
     private void createAudioGraph(View view) {

@@ -1,4 +1,4 @@
-package com.snoozieapp.app.backend.objects.hardware;
+package com.snoozieapp.app.hardware;
 
 public class PressureSensor {
 

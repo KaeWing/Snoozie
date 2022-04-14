@@ -7,9 +7,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.snoozieapp.app.alarms.Alarms;
+import com.snoozieapp.app.audio.Audio;
+import com.snoozieapp.app.bluetooth.BluetoothPage;
+import com.snoozieapp.app.settings.Settings;
+import com.snoozieapp.app.track.Track;
 import com.snoozieapp.app.ui.Adapter;
 
-public class HomePage extends AppCompatActivity {
+public class MainApp extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;

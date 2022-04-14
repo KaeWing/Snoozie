@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.bluetooth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,13 +13,15 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.snoozieapp.app.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
 
-public class BluetoothDebugPage extends AppCompatActivity {
+public class BluetoothDebug extends AppCompatActivity {
 
     // UI elements
     private static TextView title, micTitle, micData, pressureTitle, pressureData, gyroTitle, gyroData, lightTitle, lightData, tempTitle, tempData;

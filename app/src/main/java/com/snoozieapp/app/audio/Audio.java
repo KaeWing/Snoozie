@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.audio;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.snoozieapp.app.R;
 
 public class Audio extends Fragment {
     private Button musicBtn;

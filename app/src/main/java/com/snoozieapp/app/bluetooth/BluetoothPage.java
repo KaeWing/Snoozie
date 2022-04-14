@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.bluetooth;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,19 +7,13 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.snoozieapp.app.R;
 
 import java.util.Set;
 
@@ -36,7 +30,6 @@ public class BluetoothPage extends AppCompatActivity {
 
 
     // Bluetooth Service
-    private BluetoothService mBluetoothService = null;
     private Button bluetoothDebugBtn;
     private Button bluetoothTestBtn;
 
@@ -167,7 +160,7 @@ public class BluetoothPage extends AppCompatActivity {
     }
 
     public void openDebugMenu() {
-        Intent intent = new Intent(this, BluetoothDebugPage.class);
+        Intent intent = new Intent(this, BluetoothDebug.class);
         startActivity(intent);
     }
 

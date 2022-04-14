@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.alarms;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -8,6 +8,8 @@ import android.content.Intent;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.snoozieapp.app.R;
 
 //import com.snoozieapp.app.databinding.ActivityMainBinding;
 

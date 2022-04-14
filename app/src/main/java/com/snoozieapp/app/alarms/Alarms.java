@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.alarms;
 
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.snoozieapp.app.R;
 
 import java.util.Calendar;
 

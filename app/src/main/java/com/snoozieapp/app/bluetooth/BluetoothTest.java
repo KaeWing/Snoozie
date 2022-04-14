@@ -1,4 +1,4 @@
-package com.snoozieapp.app;
+package com.snoozieapp.app.bluetooth;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.snoozieapp.app.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -165,13 +167,13 @@ public class BluetoothTest extends Activity {
                                             switch(dataArray[0])
                                             {
                                                 case "Light Sensor value":
-                                                    BluetoothDebugPage.printLightData(dataArray[1]);
+                                                    BluetoothDebug.printLightData(dataArray[1]);
                                                 case "pressureValue":
-                                                    BluetoothDebugPage.printPressureData(dataArray[1]);
+                                                    BluetoothDebug.printPressureData(dataArray[1]);
                                                 case "tempHumidValue":
-                                                    BluetoothDebugPage.printTempData(dataArray[1]);
+                                                    BluetoothDebug.printTempData(dataArray[1]);
                                                 case "accel":
-                                                    BluetoothDebugPage.printGyroData(dataArray[1]);
+                                                    BluetoothDebug.printGyroData(dataArray[1]);
                                             }
                                         }
                                     });
@@ -219,11 +221,11 @@ public class BluetoothTest extends Activity {
 
                             for(int i = 0; i < 100; i++)
                             {
-                                BluetoothDebugPage.printMicData(Integer.toString(i));
-                                BluetoothDebugPage.printPressureData(Integer.toString(i + 1));
-                                BluetoothDebugPage.printGyroData(Integer.toString(i + 2));
-                                BluetoothDebugPage.printLightData(Integer.toString(i + 3));
-                                BluetoothDebugPage.printTempData(Integer.toString(i + 4));
+                                BluetoothDebug.printMicData(Integer.toString(i));
+                                BluetoothDebug.printPressureData(Integer.toString(i + 1));
+                                BluetoothDebug.printGyroData(Integer.toString(i + 2));
+                                BluetoothDebug.printLightData(Integer.toString(i + 3));
+                                BluetoothDebug.printTempData(Integer.toString(i + 4));
 
                                 try
                                 {

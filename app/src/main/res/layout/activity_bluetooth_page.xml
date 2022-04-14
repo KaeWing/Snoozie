@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BluetoothPage">
+    tools:context=".bluetooth.BluetoothPage">
 
     <TextView
         android:id="@+id/bluetoothtitle"
@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="570dp"
         android:text="test"
         android:textSize="26dp" />
 
