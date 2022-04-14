@@ -95,6 +95,11 @@ public class Track extends Fragment {
             motionYLineSeries.appendData(d2, false, 1000000);
             motionZLineSeries.appendData(d3, false, 1000000);
 
+            // Saving data (not tested)
+            //motionXData.add(d1);
+            //motionYData.add(d2);
+            //motionZData.add(d3);
+
             // Scale the X axis
             motionGraph.getViewport().setMaxX(x);
             if (x-1.5 >= 0)
@@ -121,6 +126,9 @@ public class Track extends Fragment {
         DataPoint d = new DataPoint(x, y);
         lightLineSeries.appendData(d, false, 1000000);
 
+        // Saving data (not tested)
+        //lightData.add(d);
+
         // Scale the X axis
         lightGraph.getViewport().setMaxX(x);
         if (x-1.5 >= 0)
@@ -145,6 +153,9 @@ public class Track extends Fragment {
 
         DataPoint d = new DataPoint(x, y);
         pressureLineSeries.appendData(d, false, 1000000);
+
+        // Saving data (not tested)
+        //pressureData.add(d);
 
         // Scale the X axis
         pressureGraph.getViewport().setMaxX(x);
