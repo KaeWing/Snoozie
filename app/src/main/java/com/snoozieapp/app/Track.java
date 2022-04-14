@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,11 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,9 +48,33 @@ public class Track extends Fragment {
         createAudioGraph(view);
         createMotionGraph(view);
         createLightGraph(view);
+        readData(); // Comment this out if app doesn't work
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    // // Comment this out if app doesn't work
+    private void readData() {
+        InputStream is = getResources().openRawResource(R.raw.data);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, Charset.forName("UTF-8"))
+        );
+
+        String line  = "";
+        while (true) {
+            try {
+                while ( (line = reader.readLine()) != null) {
+                    Log.d("MyActivity", "Line: " + line);
+                    String[] tokens = line.split(",");
+                    //System.out.println("Light: " + tokens[0] + " Pressure: " + tokens[1] + " X: " + tokens[2] + " Y: " + tokens[3] + " Z: " + tokens[4]);
+                }
+            } catch (IOException e) {
+                Log.wtf("MyActivity,", "Error reading data file on line " + line, e);
+                e.printStackTrace();
+            }
+
+        }
     }
 
     private void createAudioGraph(View view) {
