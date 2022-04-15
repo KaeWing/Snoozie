@@ -234,33 +234,33 @@ public class Track extends Fragment {
 
     public static void resetPressure()
     {
-        start = null;
+        // start = null;
         pressureData = new ArrayList<>(600000);
         pressureRead = new ArrayList<>();
-//        pressureLineSeries = new LineGraphSeries<>();
+        // pressureLineSeries = new LineGraphSeries<>();
     }
 
     public static void resetMotion()
     {
-        start = null;
+        // start = null;
         motionXData = new ArrayList<>(600000);
         motionYData = new ArrayList<>(600000);
         motionZData = new ArrayList<>(600000);
         xRead = new ArrayList<>();
         yRead = new ArrayList<>();
         zRead = new ArrayList<>();
-//        motionXLineSeries = new LineGraphSeries<>();
-//        motionYLineSeries = new LineGraphSeries<>();
-//        motionZLineSeries = new LineGraphSeries<>();
+        // motionXLineSeries = new LineGraphSeries<>();
+        // motionYLineSeries = new LineGraphSeries<>();
+        // motionZLineSeries = new LineGraphSeries<>();
 
     }
 
     public static void resetLight()
     {
-        start = null;
+        // start = null;
         lightData = new ArrayList<>(600000);
         lightRead = new ArrayList<>();
-//        lightLineSeries = new LineGraphSeries<>();
+        // lightLineSeries = new LineGraphSeries<>();
     }
 
     public static void setTemp(String data)
