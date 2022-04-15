@@ -23,7 +23,7 @@
         android:layout_marginTop="80dp"
         android:text="Temp:    "
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/humidBox"
@@ -34,7 +34,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginRight="10dp"
         android:textColor="@color/black"
-        android:textSize="20dp"/>
+        android:textSize="15dp"/>
 
 
     <com.jjoe64.graphview.GraphView
@@ -42,20 +42,20 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="360dp"
         android:layout_height="180dp"
-        android:layout_marginTop="130dp" />
+        android:layout_marginTop="120dp" />
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/motion_graph"
         android:layout_gravity="center_horizontal"
         android:layout_width="360dp"
         android:layout_height="180dp"
-        android:layout_marginTop="330dp" />
+        android:layout_marginTop="320dp" />
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/light_graph"
         android:layout_gravity="center_horizontal"
         android:layout_width="360dp"
         android:layout_height="180dp"
-        android:layout_marginTop="530dp" />
+        android:layout_marginTop="520dp" />
 
 </FrameLayout>
