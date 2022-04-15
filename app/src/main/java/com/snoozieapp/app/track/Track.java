@@ -28,7 +28,7 @@ public class Track extends Fragment {
     private static GraphView lightGraph;
     private static GraphView pressureGraph;
 
-    private static TextView tempBox;
+    private static TextView tempBox, humBox;
 
     private static ArrayList<DataPoint> motionXData = new ArrayList<>(600000);
     private static ArrayList<DataPoint> motionYData = new ArrayList<>(600000);
@@ -62,6 +62,7 @@ public class Track extends Fragment {
         pressureGraph = (GraphView) view.findViewById(R.id.pressure_graph);
         motionGraph = (GraphView) view.findViewById(R.id.motion_graph);
         tempBox = (TextView) view.findViewById(R.id.tempBox);
+        humBox = (TextView) view.findViewById(R.id.humidBox);
 
         initializeMotionGraph();
         initializeLightGraph();
@@ -289,19 +290,17 @@ public class Track extends Fragment {
 
     public static void setTemp(String data)
     {
-        // Split multiple tokens
-        String [] dataValues = data.split(",");
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < dataValues.length; i++)
+        if (tempBox != null && humBox != null)
         {
-            sb.append((char) ('T' - (i * 12)));
-            sb.append(": ");
-            sb.append(dataValues[i]);
-            sb.append("\t\t");
-        }
+            // Split multiple tokens
+            String [] dataValues = data.split(",");
 
-        tempBox.setText(sb.toString());
+            if (dataValues.length == 2)
+            {
+                tempBox.setText(dataValues[0] + " C");
+                humBox.setText(dataValues[1]);
+            }
+        }
     }
 
     public static void resetTemp()
