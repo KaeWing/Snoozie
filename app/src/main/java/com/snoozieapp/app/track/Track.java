@@ -84,39 +84,46 @@ public class Track extends Fragment {
             start = Instant.now();
         }
 
-        // Split Data
-        String [] dataValues = data.split(",");
-
-        if (dataValues.length == 3)
+        try
         {
-            float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
-            float y1 = Float.valueOf(dataValues[0]).floatValue();
-            float y2 = Float.valueOf(dataValues[1]).floatValue();
-            float y3 = Float.valueOf(dataValues[2]).floatValue();
+            // Split Data
+            String [] dataValues = data.split(",");
 
-            DataPoint d1 = new DataPoint(x, y1);
-            DataPoint d2 = new DataPoint(x, y2);
-            DataPoint d3 = new DataPoint(x, y3);
-
-            motionXLineSeries.appendData(d1, false, 1000000);
-            motionYLineSeries.appendData(d2, false, 1000000);
-            motionZLineSeries.appendData(d3, false, 1000000);
-
-            // Saving data (not tested)
-            //motionXData.add(d1);
-            //motionYData.add(d2);
-            //motionZData.add(d3);
-
-            // Scale the X axis
-            motionGraph.getViewport().setMaxX(x);
-            if (x-1.5 >= 0)
+            if (dataValues.length == 3)
             {
-                motionGraph.getViewport().setMinX(x - 1.5);
+                float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
+                float y1 = Float.valueOf(dataValues[0]).floatValue();
+                float y2 = Float.valueOf(dataValues[1]).floatValue();
+                float y3 = Float.valueOf(dataValues[2]).floatValue();
+
+                DataPoint d1 = new DataPoint(x, y1);
+                DataPoint d2 = new DataPoint(x, y2);
+                DataPoint d3 = new DataPoint(x, y3);
+
+                motionXLineSeries.appendData(d1, false, 1000000);
+                motionYLineSeries.appendData(d2, false, 1000000);
+                motionZLineSeries.appendData(d3, false, 1000000);
+
+                // Saving data (not tested)
+                //motionXData.add(d1);
+                //motionYData.add(d2);
+                //motionZData.add(d3);
+
+                // Scale the X axis
+                motionGraph.getViewport().setMaxX(x);
+                if (x-1.5 >= 0)
+                {
+                    motionGraph.getViewport().setMinX(x - 1.5);
+                }
+                else
+                {
+                    motionGraph.getViewport().setMinX(0);
+                }
             }
-            else
-            {
-                motionGraph.getViewport().setMinX(0);
-            }
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println("uh oh");
         }
     }
 
@@ -127,24 +134,31 @@ public class Track extends Fragment {
             start = Instant.now();
         }
 
-        float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
-        float y = Float.valueOf(data).floatValue();
-
-        DataPoint d = new DataPoint(x, y);
-        lightLineSeries.appendData(d, false, 1000000);
-
-        // Saving data (not tested)
-        //lightData.add(d);
-
-        // Scale the X axis
-        lightGraph.getViewport().setMaxX(x);
-        if (x-1.5 >= 0)
+        try
         {
-            lightGraph.getViewport().setMinX(x-1.5);
+            float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
+            float y = Float.valueOf(data).floatValue();
+
+            DataPoint d = new DataPoint(x, y);
+            lightLineSeries.appendData(d, false, 1000000);
+
+            // Saving data (not tested)
+            //lightData.add(d);
+
+            // Scale the X axis
+            lightGraph.getViewport().setMaxX(x);
+            if (x-1.5 >= 0)
+            {
+                lightGraph.getViewport().setMinX(x-1.5);
+            }
+            else
+            {
+                lightGraph.getViewport().setMinX(0);
+            }
         }
-        else
+        catch(NullPointerException e)
         {
-            lightGraph.getViewport().setMinX(0);
+            System.out.println("uh oh");
         }
     }
 
@@ -155,24 +169,31 @@ public class Track extends Fragment {
             start = Instant.now();
         }
 
-        float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
-        float y = Float.valueOf(data).floatValue();
-
-        DataPoint d = new DataPoint(x, y);
-        pressureLineSeries.appendData(d, false, 1000000);
-
-        // Saving data (not tested)
-        //pressureData.add(d);
-
-        // Scale the X axis
-        pressureGraph.getViewport().setMaxX(x);
-        if (x-1.5 >= 0)
+        try
         {
-            pressureGraph.getViewport().setMinX(x-1.5);
+            float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
+            float y = Float.valueOf(data).floatValue();
+
+            DataPoint d = new DataPoint(x, y);
+            pressureLineSeries.appendData(d, false, 1000000);
+
+            // Saving data (not tested)
+            //pressureData.add(d);
+
+            // Scale the X axis
+            pressureGraph.getViewport().setMaxX(x);
+            if (x-1.5 >= 0)
+            {
+                pressureGraph.getViewport().setMinX(x-1.5);
+            }
+            else
+            {
+                pressureGraph.getViewport().setMinX(0);
+            }
         }
-        else
+        catch(NullPointerException e)
         {
-            pressureGraph.getViewport().setMinX(0);
+            System.out.println("uh oh");
         }
     }
 
@@ -234,7 +255,7 @@ public class Track extends Fragment {
 
     public static void resetPressure()
     {
-        // start = null;
+        start = null;
         pressureData = new ArrayList<>(600000);
         pressureRead = new ArrayList<>();
         // pressureLineSeries = new LineGraphSeries<>();
@@ -242,7 +263,7 @@ public class Track extends Fragment {
 
     public static void resetMotion()
     {
-        // start = null;
+        start = null;
         motionXData = new ArrayList<>(600000);
         motionYData = new ArrayList<>(600000);
         motionZData = new ArrayList<>(600000);
@@ -257,7 +278,7 @@ public class Track extends Fragment {
 
     public static void resetLight()
     {
-        // start = null;
+        start = null;
         lightData = new ArrayList<>(600000);
         lightRead = new ArrayList<>();
         // lightLineSeries = new LineGraphSeries<>();
