@@ -297,8 +297,9 @@ public class Track extends Fragment {
 
             if (dataValues.length == 2)
             {
-                tempBox.setText(dataValues[0] + " C");
-                humBox.setText(dataValues[1]);
+                float F = (Float.valueOf(dataValues[0]).floatValue() * (float) 1.8) + (float) 32;
+                tempBox.setText("Temp: " + F + " F");
+                humBox.setText("Humid: " + dataValues[1]);
             }
         }
     }
