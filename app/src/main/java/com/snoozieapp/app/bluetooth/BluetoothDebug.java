@@ -141,7 +141,7 @@ public class BluetoothDebug extends AppCompatActivity {
 
             for (int i = 0; i < dataValues.length; i++)
             {
-                sb.append((char) ('T' - (i * 13)));
+                sb.append((char) ('T' - (i * 12)));
                 sb.append(": ");
                 sb.append(dataValues[i]);
                 sb.append("\t\t");

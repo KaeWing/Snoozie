@@ -30,15 +30,16 @@ public class Settings extends Fragment {
             }
         });
 
-//        clearDataBtn = (Button) view.findViewById(R.id.clearDataBtn);
-//        clearDataBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Track.initializeLightGraph();
-//                Track.initializeLightGraph();
-//                Track.initializeLightGraph();
-//            }
-//        });
+        clearDataBtn = (Button) view.findViewById(R.id.clearDataBtn);
+        clearDataBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Track.resetPressure();
+                Track.resetLight();
+                Track.resetMotion();
+                Track.resetTemp();
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

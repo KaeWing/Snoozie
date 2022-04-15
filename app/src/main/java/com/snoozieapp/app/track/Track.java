@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,8 @@ public class Track extends Fragment {
     private static GraphView motionGraph;
     private static GraphView lightGraph;
     private static GraphView pressureGraph;
+
+    private static TextView tempBox;
 
     private static ArrayList<DataPoint> motionXData = new ArrayList<>(600000);
     private static ArrayList<DataPoint> motionYData = new ArrayList<>(600000);
@@ -55,10 +58,14 @@ public class Track extends Fragment {
         view = inflater.inflate(R.layout.track_page, container, false);
         view.invalidate();
 
+        lightGraph = (GraphView) view.findViewById(R.id.light_graph);
+        pressureGraph = (GraphView) view.findViewById(R.id.pressure_graph);
+        motionGraph = (GraphView) view.findViewById(R.id.motion_graph);
+        tempBox = (TextView) view.findViewById(R.id.tempBox);
 
-        initializeMotionGraph(view);
-        initializeLightGraph(view);
-        initializePressureGraph(view);
+        initializeMotionGraph();
+        initializeLightGraph();
+        initializePressureGraph();
 
         // Example Graphs
         // examplePressureGraph();
@@ -169,8 +176,8 @@ public class Track extends Fragment {
         }
     }
 
-    private static void initializeMotionGraph(View view) {
-        motionGraph = (GraphView) view.findViewById(R.id.motion_graph);
+    public static void initializeMotionGraph() {
+        System.out.print("called");
 
         // Titles
         motionGraph.setTitle("Motion Data");
@@ -198,8 +205,7 @@ public class Track extends Fragment {
         gridLabel.setHorizontalAxisTitle("Time (s)");
     }
 
-    private static void initializeLightGraph(View view) {
-        lightGraph = (GraphView) view.findViewById(R.id.light_graph);
+    public static void initializeLightGraph() {
 
         lightGraph.setTitle("Light Data");
         lightGraph.setTitleColor(R.color.black);
@@ -213,9 +219,7 @@ public class Track extends Fragment {
         gridLabel.setHorizontalAxisTitle("Time (s)");
     }
 
-    private static void initializePressureGraph(View view) {
-        pressureGraph = (GraphView) view.findViewById(R.id.pressure_graph);
-
+    public static void initializePressureGraph() {
         pressureGraph.setTitle("Pressure Data");
         pressureGraph.setTitleColor(R.color.black);
         pressureGraph.setTitleTextSize(50);
@@ -228,7 +232,58 @@ public class Track extends Fragment {
         gridLabel.setHorizontalAxisTitle("Time (s)");
     }
 
+    public static void resetPressure()
+    {
+        start = null;
+        pressureData = new ArrayList<>(600000);
+        pressureRead = new ArrayList<>();
+        pressureLineSeries = new LineGraphSeries<>();
+    }
 
+    public static void resetMotion()
+    {
+        start = null;
+        motionXData = new ArrayList<>(600000);
+        motionYData = new ArrayList<>(600000);
+        motionZData = new ArrayList<>(600000);
+        xRead = new ArrayList<>();
+        yRead = new ArrayList<>();
+        zRead = new ArrayList<>();
+        motionXLineSeries = new LineGraphSeries<>();
+        motionYLineSeries = new LineGraphSeries<>();
+        motionZLineSeries = new LineGraphSeries<>();
+
+    }
+
+    public static void resetLight()
+    {
+        start = null;
+        lightData = new ArrayList<>(600000);
+        lightRead = new ArrayList<>();
+        lightLineSeries = new LineGraphSeries<>();
+    }
+
+    public static void setTemp(String data)
+    {
+        // Split multiple tokens
+        String [] dataValues = data.split(",");
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < dataValues.length; i++)
+        {
+            sb.append((char) ('T' - (i * 12)));
+            sb.append(": ");
+            sb.append(dataValues[i]);
+            sb.append("\t\t");
+        }
+
+        tempBox.setText(sb.toString());
+    }
+
+    public static void resetTemp()
+    {
+        tempBox.setText("");
+    }
 
 
 

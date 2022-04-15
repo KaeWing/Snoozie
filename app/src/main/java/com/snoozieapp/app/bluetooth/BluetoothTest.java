@@ -28,6 +28,7 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
@@ -178,6 +179,7 @@ public class BluetoothTest extends Activity {
                                                     break;
                                                 case "tempHumidValue":
                                                     BluetoothDebug.printTempData(dataArray[1]);
+                                                    Track.setTemp(dataArray[1]);
                                                     break;
                                                 case "accel":
                                                     BluetoothDebug.printGyroData(dataArray[1]);
@@ -228,9 +230,9 @@ public class BluetoothTest extends Activity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             public void run() {
                 while(!Thread.currentThread().isInterrupted()) {
-
-                            for(int i = 0; i < Track.lightRead.size(); i++)
-                            {
+                    if (Track.lightRead != null) {
+                        for (int i = 0; i < Track.lightRead.size(); i++) {
+                            try{
                                 // Audio Data
                                 BluetoothDebug.printMicData("N/A");
                                 // Pressure Data
@@ -244,16 +246,23 @@ public class BluetoothTest extends Activity {
                                 Track.graphLight(Instant.now(), Track.lightRead.get(i));
                                 // Temp Data
                                 BluetoothDebug.printTempData("N/A,N/A");
-
-                                try
-                                {
-                                    Thread.sleep(200);
-                                }
-                                catch (InterruptedException e)
-                                {
-                                    e.printStackTrace();
-                                }
                             }
+                            catch (IndexOutOfBoundsException e)
+                            {
+                                System.out.println("uh oh!");
+                            }
+
+                            try {
+                                Thread.sleep(200);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("null");
+                    }
                 }
             }
         });
@@ -262,6 +271,10 @@ public class BluetoothTest extends Activity {
     }
 
     private void readData() {
+        Track.resetPressure();
+        Track.resetLight();
+        Track.resetMotion();
+
         InputStream is = getResources().openRawResource(R.raw.data);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8"))
