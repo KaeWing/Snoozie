@@ -11,9 +11,10 @@ import androidx.fragment.app.Fragment;
 
 import com.snoozieapp.app.R;
 import com.snoozieapp.app.bluetooth.BluetoothPage;
+import com.snoozieapp.app.track.Track;
 
 public class Settings extends Fragment {
-    private Button bluetoothSettingsBtn;
+    private Button bluetoothSettingsBtn, clearDataBtn;
     private View view;
 
     @Override
@@ -28,6 +29,16 @@ public class Settings extends Fragment {
                 openBluetoothPage();
             }
         });
+
+//        clearDataBtn = (Button) view.findViewById(R.id.clearDataBtn);
+//        clearDataBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Track.initializeLightGraph();
+//                Track.initializeLightGraph();
+//                Track.initializeLightGraph();
+//            }
+//        });
 
         // Inflate the layout for this fragment
         return view;
