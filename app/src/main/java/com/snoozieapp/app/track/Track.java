@@ -237,7 +237,7 @@ public class Track extends Fragment {
         start = null;
         pressureData = new ArrayList<>(600000);
         pressureRead = new ArrayList<>();
-        pressureLineSeries = new LineGraphSeries<>();
+//        pressureLineSeries = new LineGraphSeries<>();
     }
 
     public static void resetMotion()
@@ -249,9 +249,9 @@ public class Track extends Fragment {
         xRead = new ArrayList<>();
         yRead = new ArrayList<>();
         zRead = new ArrayList<>();
-        motionXLineSeries = new LineGraphSeries<>();
-        motionYLineSeries = new LineGraphSeries<>();
-        motionZLineSeries = new LineGraphSeries<>();
+//        motionXLineSeries = new LineGraphSeries<>();
+//        motionYLineSeries = new LineGraphSeries<>();
+//        motionZLineSeries = new LineGraphSeries<>();
 
     }
 
@@ -260,7 +260,7 @@ public class Track extends Fragment {
         start = null;
         lightData = new ArrayList<>(600000);
         lightRead = new ArrayList<>();
-        lightLineSeries = new LineGraphSeries<>();
+//        lightLineSeries = new LineGraphSeries<>();
     }
 
     public static void setTemp(String data)
