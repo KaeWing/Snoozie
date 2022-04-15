@@ -253,17 +253,19 @@ public class Track extends Fragment {
         gridLabel.setHorizontalAxisTitle("Time (s)");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void resetPressure()
     {
-        start = null;
+        start = Instant.now();
         pressureData = new ArrayList<>(600000);
         pressureRead = new ArrayList<>();
         // pressureLineSeries = new LineGraphSeries<>();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void resetMotion()
     {
-        start = null;
+        start = Instant.now();
         motionXData = new ArrayList<>(600000);
         motionYData = new ArrayList<>(600000);
         motionZData = new ArrayList<>(600000);
@@ -276,9 +278,10 @@ public class Track extends Fragment {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void resetLight()
     {
-        start = null;
+        start = Instant.now();
         lightData = new ArrayList<>(600000);
         lightRead = new ArrayList<>();
         // lightLineSeries = new LineGraphSeries<>();
