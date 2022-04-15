@@ -1,12 +1,14 @@
 package com.snoozieapp.app.settings;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.snoozieapp.app.R;
@@ -32,6 +34,7 @@ public class Settings extends Fragment {
 
         clearDataBtn = (Button) view.findViewById(R.id.clearDataBtn);
         clearDataBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 Track.resetPressure();
