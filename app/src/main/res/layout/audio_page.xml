@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="200dp"
         android:text="Music"
         android:textSize="26dp" />
 
@@ -29,35 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="280dp"
         android:text="Ambient Noises"
         android:textSize="26dp" />
 
-    <Button
-        android:id="@+id/pasteVideoURLBtn"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="300dp"
-        android:text="Paste Video URL"
-        android:textSize="26dp" />
 
-    <Button
-        android:id="@+id/createQueueBtn"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="440dp"
-        android:text="Create Queue"
-        android:textSize="26dp" />
-
-    <Button
-        android:id="@+id/createLoopBtn"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="520dp"
-        android:text="Create Loop"
-        android:textSize="26dp" />
 
 </FrameLayout>
