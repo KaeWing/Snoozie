@@ -246,6 +246,8 @@ public class BluetoothTest extends Activity {
                                 Track.graphLight(Instant.now(), Track.lightRead.get(i));
                                 // Temp Data
                                 BluetoothDebug.printTempData("N/A,N/A");
+                                // Update Cycle
+                                Track.updateSleepCycle(Instant.now());
                             }
                             catch (IndexOutOfBoundsException e)
                             {

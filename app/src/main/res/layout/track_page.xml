@@ -38,12 +38,12 @@
 
     <TextView
         android:id="@+id/stageBox"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
         android:text="Stage: 1"
         android:layout_marginTop="90dp"
-        android:layout_marginRight="10dp"
         android:textColor="@color/black"
         android:textSize="15dp"/>
 

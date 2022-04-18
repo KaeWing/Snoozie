@@ -52,6 +52,8 @@ public class Track extends Fragment {
     public static ArrayList<String> yRead = new ArrayList<>();
     public static ArrayList<String> zRead = new ArrayList<>();
 
+    private static Integer pressureReading = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -177,6 +179,7 @@ public class Track extends Fragment {
         {
             float x = ((float) ChronoUnit.MILLIS.between(start, time))/((float) 1000);
             float y = Float.valueOf(data).floatValue();
+            pressureReading = (int) y;
 
             DataPoint d = new DataPoint(x, y);
             pressureLineSeries.appendData(d, false, 1000000);
@@ -195,10 +198,62 @@ public class Track extends Fragment {
                 pressureGraph.getViewport().setMinX(0);
             }
 
-            if ( y <= 100) {
-                stageTextBox.setText("Falling Asleep");
-                cycleTime = Instant.now();
-            }
+//            if ( stageTextBox != null ) {
+//
+//                if ( y <= 100) {
+//                    stageTextBox.setText("Falling Asleep");
+//                    cycleTime = Instant.now();
+//                }
+//
+////            // < 10
+////            else if (ChronoUnit.MILLIS.between(cycleTime, time) <= 600000)
+////            {
+////                stageTextBox.setText("Falling Asleep");
+////            }
+//
+//                // 10
+//                else if (ChronoUnit.MILLIS.between(cycleTime, time) >= 600000)
+//                {
+//                    stageTextBox.setText("Light Sleep");
+//                }
+//
+//                // 35
+//                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 2100)
+//                {
+//                    stageTextBox.setText("Deep Sleep");
+//                }
+//
+//                // 65
+//                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 3900)
+//                {
+//                    stageTextBox.setText("REM Sleep");
+//                }
+//
+//                // Reset after a certain amount of time of REM (100 mins)
+//                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 6000)
+//                {
+//                    stageTextBox.setText("Falling Asleep");
+//                    cycleTime = Instant.now();
+//                }
+//            }
+
+
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println("uh oh");
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void updateSleepCycle(Instant time) {
+        try {
+            if ( stageTextBox != null ) {
+
+                if ( pressureReading <= 100) {
+                    stageTextBox.setText("Falling Asleep");
+                    cycleTime = Instant.now();
+                }
 
 //            // < 10
 //            else if (ChronoUnit.MILLIS.between(cycleTime, time) <= 600000)
@@ -206,36 +261,33 @@ public class Track extends Fragment {
 //                stageTextBox.setText("Falling Asleep");
 //            }
 
-            // 10
-            else if (ChronoUnit.MILLIS.between(cycleTime, time) >= 600000)
-            {
-                 stageTextBox.setText("Light Sleep");
+                // 10
+                else if (ChronoUnit.MILLIS.between(cycleTime, time) >= 600000)
+                {
+                    stageTextBox.setText("Light Sleep");
+                }
+
+                // 35
+                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 2100)
+                {
+                    stageTextBox.setText("Deep Sleep");
+                }
+
+                // 65
+                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 3900)
+                {
+                    stageTextBox.setText("REM Sleep");
+                }
+
+                // Reset after a certain amount of time of REM (100 mins)
+                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 6000)
+                {
+                    stageTextBox.setText("Falling Asleep");
+                    cycleTime = Instant.now();
+                }
             }
+        } catch (Exception e) {
 
-            // 35
-            else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 2100)
-            {
-                stageTextBox.setText("Deep Sleep");
-            }
-
-            // 65
-            else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 3900)
-            {
-                stageTextBox.setText("REM Sleep");
-            }
-
-            // Reset after a certain amount of time of REM (100 mins)
-            else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 6000)
-            {
-                stageTextBox.setText("Falling Asleep");
-                cycleTime = Instant.now();
-            }
-
-
-        }
-        catch(NullPointerException e)
-        {
-            System.out.println("uh oh");
         }
     }
 
