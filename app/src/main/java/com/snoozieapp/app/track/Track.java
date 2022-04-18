@@ -3,6 +3,7 @@ package com.snoozieapp.app.track;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -172,7 +173,6 @@ public class Track extends Fragment {
         if (start == null)
         {
             start = Instant.now();
-            cycleTime = Instant.now();
         }
 
         try
@@ -247,10 +247,17 @@ public class Track extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void updateSleepCycle(Instant time) {
+
+        if (cycleTime == null)
+        {
+            cycleTime = Instant.now();
+        }
+
         try {
             if ( stageTextBox != null ) {
 
-                if ( pressureReading <= 100) {
+                // If pressure sensor's value is less than 100, reset cycletime
+                if ( pressureReading <= 100 ) {
                     stageTextBox.setText("Falling Asleep");
                     cycleTime = Instant.now();
                 }
@@ -261,30 +268,35 @@ public class Track extends Fragment {
 //                stageTextBox.setText("Falling Asleep");
 //            }
 
-                // 10
-                else if (ChronoUnit.MILLIS.between(cycleTime, time) >= 600000)
-                {
-                    stageTextBox.setText("Light Sleep");
-                }
-
-                // 35
-                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 2100)
-                {
-                    stageTextBox.setText("Deep Sleep");
-                }
-
-                // 65
-                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 3900)
-                {
-                    stageTextBox.setText("REM Sleep");
-                }
-
                 // Reset after a certain amount of time of REM (100 mins)
-                else if ( ((ChronoUnit.MILLIS.between(cycleTime, time)) / (float) 1000 ) >= 6000)
+                else if ( ChronoUnit.MINUTES.between(cycleTime, time) >= 100)
                 {
                     stageTextBox.setText("Falling Asleep");
                     cycleTime = Instant.now();
+//                    System.out.println("Stage: 1");
                 }
+
+                // 65
+                else if ( ChronoUnit.MINUTES.between(cycleTime, time) >= 65)
+                {
+                    stageTextBox.setText("REM Sleep");
+//                    System.out.println("Stage: 4");
+                }
+
+                // 35
+                else if ( ChronoUnit.MINUTES.between(cycleTime, time) >= 35)
+                {
+                    stageTextBox.setText("Deep Sleep");
+//                    System.out.println("Stage: 3");
+                }
+
+                // 10
+                else if (ChronoUnit.MINUTES.between(cycleTime, time) >= 10)
+                {
+                    stageTextBox.setText("Light Sleep");
+//                    System.out.println("Stage: 2");
+                }
+
             }
         } catch (Exception e) {
 
