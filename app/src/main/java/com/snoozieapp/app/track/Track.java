@@ -3,7 +3,6 @@ package com.snoozieapp.app.track;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,11 +30,11 @@ public class Track extends Fragment {
 
     private static TextView tempBox, humBox, stageTextBox;
 
-    private static ArrayList<DataPoint> motionXData = new ArrayList<>(600000);
-    private static ArrayList<DataPoint> motionYData = new ArrayList<>(600000);
-    private static ArrayList<DataPoint> motionZData = new ArrayList<>(600000);
-    private static ArrayList<DataPoint> lightData = new ArrayList<>(600000);
-    private static ArrayList<DataPoint> pressureData = new ArrayList<>(600000);
+    public static ArrayList<DataPoint> motionXData = new ArrayList<>(300000);
+    public static ArrayList<DataPoint> motionYData = new ArrayList<>(300000);
+    public static ArrayList<DataPoint> motionZData = new ArrayList<>(300000);
+    public static ArrayList<DataPoint> lightData = new ArrayList<>(300000);
+    public static ArrayList<DataPoint> pressureData = new ArrayList<>(300000);
 
     private static LineGraphSeries<DataPoint> motionXLineSeries = new LineGraphSeries<>();
     private static LineGraphSeries<DataPoint> motionYLineSeries = new LineGraphSeries<>();
@@ -111,9 +110,9 @@ public class Track extends Fragment {
                 motionZLineSeries.appendData(d3, false, 1000000);
 
                 // Saving data (not tested)
-                //motionXData.add(d1);
-                //motionYData.add(d2);
-                //motionZData.add(d3);
+                motionXData.add(d1);
+                motionYData.add(d2);
+                motionZData.add(d3);
 
                 // Scale the X axis
                 motionGraph.getViewport().setMaxX(x);
@@ -149,7 +148,7 @@ public class Track extends Fragment {
             lightLineSeries.appendData(d, false, 1000000);
 
             // Saving data (not tested)
-            //lightData.add(d);
+            lightData.add(d);
 
             // Scale the X axis
             lightGraph.getViewport().setMaxX(x);
@@ -185,7 +184,7 @@ public class Track extends Fragment {
             pressureLineSeries.appendData(d, false, 1000000);
 
             // Saving data (not tested)
-            //pressureData.add(d);
+            pressureData.add(d);
 
             // Scale the X axis
             pressureGraph.getViewport().setMaxX(x);

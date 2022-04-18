@@ -29,6 +29,9 @@
             android:name=".bluetooth.BluetoothPage"
             android:exported="false" />
         <activity
+            android:name=".track.ReviewPage"
+            android:exported="false" />
+        <activity
             android:name=".bluetooth.BluetoothDebug"
             android:exported="false" />
         <activity android:name=".ui.SplashScreen">

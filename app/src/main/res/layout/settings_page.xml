@@ -24,14 +24,14 @@
         android:text="Bluetooth"
         android:textSize="26dp" />
 
-<!--    <Button-->
-<!--        android:id="@+id/smartWakeBtn"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_marginHorizontal="26dp"-->
-<!--        android:layout_marginTop="220dp"-->
-<!--        android:text="SmartWake"-->
-<!--        android:textSize="26dp" />-->
+    <Button
+        android:id="@+id/reviewBtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="220dp"
+        android:text="Review Data"
+        android:textSize="26dp" />
 
 <!--    <Button-->
 <!--        android:id="@+id/linkMusicAppBtn"-->
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="300dp"
         android:text="Clear Data"
         android:textSize="26dp" />
 

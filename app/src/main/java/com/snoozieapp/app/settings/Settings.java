@@ -13,10 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import com.snoozieapp.app.R;
 import com.snoozieapp.app.bluetooth.BluetoothPage;
+import com.snoozieapp.app.track.ReviewPage;
 import com.snoozieapp.app.track.Track;
 
 public class Settings extends Fragment {
-    private Button bluetoothSettingsBtn, clearDataBtn;
+    private Button bluetoothSettingsBtn, clearDataBtn, reviewBtn;
     private View view;
 
     @Override
@@ -44,11 +45,26 @@ public class Settings extends Fragment {
             }
         });
 
+        reviewBtn = (Button) view.findViewById(R.id.reviewBtn);
+        reviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openReview();
+            }
+        });
+
         // Inflate the layout for this fragment
         return view;
     }
+
     public void openBluetoothPage() {
         Intent intent = new Intent(getView().getContext(), BluetoothPage.class);
+        startActivity(intent);
+    }
+
+    public void openReview()
+    {
+        Intent intent = new Intent(getView().getContext(), ReviewPage.class);
         startActivity(intent);
     }
 }
