@@ -168,6 +168,7 @@ public class Track extends Fragment {
         if (start == null)
         {
             start = Instant.now();
+//            cycleTime = Instant.now();
         }
 
         try
@@ -191,6 +192,11 @@ public class Track extends Fragment {
             {
                 pressureGraph.getViewport().setMinX(0);
             }
+
+//            if (ChronoUnit.MILLIS.between(cycleTime, time) >= 10min)
+//            {
+//                update text box
+//            }
         }
         catch(NullPointerException e)
         {
