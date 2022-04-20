@@ -257,14 +257,14 @@ public class Track extends Fragment {
 
                 // If pressure sensor's value is less than 100, reset cycletime
                 if ( pressureReading <= 100 ) {
-                    stageTextBox.setText("Falling Asleep");
+                    stageTextBox.setText("Stage 1");
                     cycleTime = Instant.now();
                 }
 
                 // Reset after a certain amount of time of REM (100 mins)
                 else if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 120)
                 {
-                    stageTextBox.setText("Falling Asleep");
+                    stageTextBox.setText("Stage 1");
                     cycleTime = Instant.now();
 //                    System.out.println("Stage: 1");
                 }
@@ -272,21 +272,21 @@ public class Track extends Fragment {
                 // 65
                 else if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 90)
                 {
-                    stageTextBox.setText("REM Sleep");
+                    stageTextBox.setText("Stage 4");
 //                    System.out.println("Stage: 4");
                 }
 
                 // 35
                 else if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 60)
                 {
-                    stageTextBox.setText("Deep Sleep");
+                    stageTextBox.setText("Stage 3");
 //                    System.out.println("Stage: 3");
                 }
 
                 // 10
                 else if (ChronoUnit.SECONDS.between(cycleTime, time) >= 30)
                 {
-                    stageTextBox.setText("Light Sleep");
+                    stageTextBox.setText("Stage 2");
 //                    System.out.println("Stage: 2");
                 }
 
