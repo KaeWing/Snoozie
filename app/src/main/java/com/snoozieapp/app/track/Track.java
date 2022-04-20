@@ -268,7 +268,7 @@ public class Track extends Fragment {
 //            }
 
                 // Reset after a certain amount of time of REM (100 mins)
-                else if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 120)
+                if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 120)
                 {
                     stageTextBox.setText("Falling Asleep");
                     cycleTime = Instant.now();

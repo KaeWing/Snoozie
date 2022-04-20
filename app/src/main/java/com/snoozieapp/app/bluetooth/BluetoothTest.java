@@ -182,6 +182,7 @@ public class BluetoothTest extends Activity {
                                                 case "accel":
                                                     BluetoothDebug.printGyroData(dataArray[1]);
                                                     Track.graphMotion(Instant.now(), dataArray[1]);
+                                                    Track.updateSleepCycle(Instant.now());
                                                     break;
                                             }
                                         }
