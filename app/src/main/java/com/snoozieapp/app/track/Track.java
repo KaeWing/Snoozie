@@ -256,19 +256,13 @@ public class Track extends Fragment {
             if ( stageTextBox != null ) {
 
                 // If pressure sensor's value is less than 100, reset cycletime
-//                if ( pressureReading <= 100 ) {
-//                    stageTextBox.setText("Falling Asleep");
-//                    cycleTime = Instant.now();
-//                }
-
-//            // < 10
-//            else if (ChronoUnit.MILLIS.between(cycleTime, time) <= 600000)
-//            {
-//                stageTextBox.setText("Falling Asleep");
-//            }
+                if ( pressureReading <= 100 ) {
+                    stageTextBox.setText("Falling Asleep");
+                    cycleTime = Instant.now();
+                }
 
                 // Reset after a certain amount of time of REM (100 mins)
-                if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 120)
+                else if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 120)
                 {
                     stageTextBox.setText("Falling Asleep");
                     cycleTime = Instant.now();
