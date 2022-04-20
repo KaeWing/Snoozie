@@ -268,7 +268,7 @@ public class Track extends Fragment {
 //            }
 
                 // Reset after a certain amount of time of REM (100 mins)
-                else if ( ChronoUnit.MINUTES.between(cycleTime, time) >= 2)
+                else if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 120)
                 {
                     stageTextBox.setText("Falling Asleep");
                     cycleTime = Instant.now();
@@ -276,21 +276,21 @@ public class Track extends Fragment {
                 }
 
                 // 65
-                else if ( ChronoUnit.MINUTES.between(cycleTime, time) >= 1.5)
+                else if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 90)
                 {
                     stageTextBox.setText("REM Sleep");
 //                    System.out.println("Stage: 4");
                 }
 
                 // 35
-                else if ( ChronoUnit.MINUTES.between(cycleTime, time) >= 1)
+                else if ( ChronoUnit.SECONDS.between(cycleTime, time) >= 60)
                 {
                     stageTextBox.setText("Deep Sleep");
 //                    System.out.println("Stage: 3");
                 }
 
                 // 10
-                else if (ChronoUnit.MINUTES.between(cycleTime, time) >= .5)
+                else if (ChronoUnit.SECONDS.between(cycleTime, time) >= 30)
                 {
                     stageTextBox.setText("Light Sleep");
 //                    System.out.println("Stage: 2");
